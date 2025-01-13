@@ -2,10 +2,22 @@
       <!DOCTYPE html>
       <html lang="en">
       <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Stream top IMDB rated movies for free. Watch the highest-rated films including Interstellar, The Lion King, Harry Potter, and more. No subscription required.">
+        <meta name="keywords" content="top IMDB movies, free movies, highest rated movies, stream movies free, best movies, IMDB top rated">
+        <meta property="og:title" content="Top IMDB Movies - Stream Free | AllStream">
+        <meta property="og:description" content="Watch the highest-rated IMDB movies for free. Stream classics and new releases instantly with no subscription.">
+        <meta property="og:type" content="website">
+        <title>Top IMDB Movies - Stream Free | AllStream</title>
+        <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
           <title>Top Movies</title>
           <style>
+
+        @font-face {
+            font-family: 'Wonderly';
+            src: url('Wonderly.otf') format('opentype');
+        }
               :root {
                   --bg-color: #121212;
                   --accent-color: #8B5CF6;
@@ -23,24 +35,42 @@
                   color: var(--text-color);
               }
 
-              .navbar {
-                  position: fixed;
-                  top: 20px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 90%;
-                  max-width: 1200px;
-                  background: var(--nav-bg);
-                  border-radius: 50px;
-                  padding: 15px 30px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-                  z-index: 1000;
+              h1 {
+                font-family: Wonderly;
               }
 
+              .navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1200px;
+        background: var(--nav-bg);
+        border-radius: 50px;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 0 20px var(--accent-color), /* Outer glow */
+                    inset 0 0 15px rgba(139, 92, 246, 0.3); /* Inner glow */
+        border: 2px solid var(--accent-color);
+        z-index: 1000;
+    }
+
+    /* Update search bar container to match the new navbar style */
+    .search-bar-container {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 5px;
+        width: 40%;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
               .logo {
+                font-family: Wonderly;
                   font-size: 24px;
                   font-weight: bold;
                   color: var(--text-color);
@@ -53,14 +83,7 @@
                   color: var(--accent-color);
               }
 
-              .search-bar-container {
-                  display: flex;
-                  align-items: center;
-                  background: rgba(255, 255, 255, 0.1);
-                  border-radius: 25px;
-                  padding: 5px;
-                  width: 40%;
-              }
+             
 
               .search-bar {
                   background: transparent;
@@ -93,10 +116,19 @@
                   background: var(--accent-hover);
               }
 
-              .main-content {
-                  padding-top: 120px;
-                  padding-inline: 20px;
-              }
+              .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 40px 0;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        /* Update main-content padding to accommodate the title */
+        .main-content {
+            padding-top: 100px;
+            padding-inline: 20px;
+        }
 
               .topMovies {
                   display: grid;
@@ -154,8 +186,8 @@
           </nav>
 
           <main class="main-content">
-              <h1>Top Movies</h1>
-              <div class="topMovies">
+            <h1 class="page-title">Top IMDB Movies</h1>
+            <div class="topMovies">
     
         <div class="movie-card" onclick="location.href='https://allstream.cc/movies/tt5040012'">
             <img src="https://m.media-amazon.com/images/M/MV5BY2FhZGE3NmEtNWJjOC00NDI1LWFhMTQtMjcxNmQzZmEwNGIzXkEyXkFqcGc@._V1_.jpg" alt="Nosferatu">
@@ -1160,19 +1192,5 @@
               </div>
           </main>
       </body>
-        <script>
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                window.location.href = `/search/${encodeURIComponent(query)}`;
-            }
-        }
-
-        document.getElementById('searchInput').addEventListener('keypress', function (event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        });
-    </script>     
       </html>
     
