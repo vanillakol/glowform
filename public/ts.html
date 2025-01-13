@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top TV Shows</title>
+    <meta name="description" content="Stream top IMDB TV shows for free. Watch highest-rated series including Game of Thrones, Breaking Bad, Stranger Things, and more popular shows. No subscription required.">
+    <meta name="keywords" content="top IMDB shows, best TV series, highest rated shows, stream TV shows free, popular series, IMDB top rated shows, free streaming shows">
+    <meta property="og:title" content="Top IMDB TV Shows - Stream Free | AllStream">
+    <meta property="og:description" content="Watch the highest-rated IMDB TV shows for free. Stream popular series and new releases instantly with no subscription needed.">
+    <meta property="og:type" content="website">
+    <title>Top IMDB TV Shows - Stream Free | AllStream</title>
+    <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
     <style>
         :root {
             --bg-color: #121212;
@@ -12,6 +18,11 @@
             --text-color: #FFFFFF;
             --nav-bg: rgba(30, 30, 30, 0.95);
             --card-bg: #1E1E1E;
+        }
+
+        @font-face {
+            font-family: 'Wonderly';
+            src: url('Wonderly.otf') format('opentype');
         }
 
         body {
@@ -24,21 +35,23 @@
 
         /* Navbar styles */
         .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            background: var(--nav-bg);
-            border-radius: 50px;
-            padding: 15px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1200px;
+        background: var(--nav-bg);
+        border-radius: 50px;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 0 20px var(--accent-color), /* Outer glow */
+                    inset 0 0 15px rgba(139, 92, 246, 0.3); /* Inner glow */
+        border: 2px solid var(--accent-color);
+        z-index: 1000;
+    }
 
         .logo {
             font-size: 24px;
@@ -47,6 +60,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            font-family: Wonderly;
         }
 
         .logo span {
@@ -54,13 +68,14 @@
         }
 
         .search-bar-container {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 5px;
-            width: 40%;
-        }
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 5px;
+        width: 40%;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+    }
 
         .search-bar {
             background: transparent;
@@ -143,6 +158,14 @@
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
         }
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 40px 0;
+            color: var(--text-color);
+            font-weight: bold;
+            font-family: Wonderly;
+        }
     </style>
 </head>
 <body>
@@ -155,7 +178,7 @@
     </nav>
 
     <main class="main-content">
-        <h1>Top TV Shows</h1>
+        <h1 class="page-title">Top IMDB Shows</h1>
         <div class="topShows">
             <!-- Correctly formatted movie cards -->
             <div class="movie-card" onclick="location.href='https://allstream.cc/shows/tt10919420'">
