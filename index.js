@@ -356,7 +356,7 @@ app.get('/movies/:imdb', async (req, res) => {
             <body>
             <div class="navbar-container">
             <nav class="navbar">
-                    <a href="https://allstream.cc/index.html" class="logo">All<span>Stream</span></a>
+                    <a href="https://yesmovies.lol/index.html" class="logo">Yes<span>Movies</span></a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
                         <div class="search-icon" onclick="performSearch()">Search</div>
@@ -782,7 +782,7 @@ app.get('/shows/:imdb', async (req, res) => {
             <body>
                 <div class="navbar-container">
                 <nav class="navbar">
-                    <a href="https://allstream.cc/index.html" class="logo">All<span>Stream</span></a>
+                    <a href="https://yesmovies.lol/index.html" class="logo">YES<span>MOVIES</span></a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
                         <div class="search-icon" onclick="performSearch()">Search</div>
@@ -942,7 +942,7 @@ app.get('/search/:query', async (req, res) => {
             .map((movie) => {
                 const linkType = movie.type === 'tvSeries' ? 'shows' : 'movies';
                 return `
-                    <div class="movie-card" onclick="location.href='https://allstream.cc/${linkType}/${movie.id}'">
+                    <div class="movie-card" onclick="location.href='https://yesmovies.lol/${linkType}/${movie.id}'">
                         <img src="${movie.image}" alt="${movie.primaryTitle}" />
                         <div class="movie-info">
                             <div class="movie-title">${movie.primaryTitle}</div>
@@ -962,9 +962,9 @@ app.get('/search/:query', async (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <meta name="description" content="AllStream - Watch your favorite movies and TV shows for free. Stream the latest content with no subscription required.">
+                <meta name="description" content="Yes Movies - Watch your favorite movies and TV shows for free. Stream the latest content with no subscription required.">
                 <meta name="keywords" content="free movies, free tv shows, streaming, online movies, watch movies">
-                <title>Search Results - AllStream</title>
+                <title>Search Results - Yes Movies</title>
                 <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
                 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
                 <style>
@@ -1150,7 +1150,7 @@ app.get('/search/:query', async (req, res) => {
             </head>
             <body>
                 <nav class="navbar">
-                    <a href="https://allstream.cc/index.html" class="logo">All<span>Stream</span></a>
+                    <a href="https://yesmovies.lol/index.html" class="logo">YES<span>MOVIES</span></a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
                         <div class="search-icon" onclick="performSearch()">Search</div>
@@ -1165,7 +1165,7 @@ app.get('/search/:query', async (req, res) => {
                 </main>
 
                 <footer>
-                    Made with <span>♥</span> by AllStream
+                    Made with <span>♥</span> by Yes Movies
                 </footer>
 
                 <script>
@@ -1193,5 +1193,5 @@ app.get('/search/:query', async (req, res) => {
 // Start the server
 const PORT = 8080;
 app.listen(PORT, () => {
-    console.log(`Server is running on https://allstream.cc${PORT}`);
+    console.log(`Server is running on https://yesmovies.lol${PORT}`);
 });
