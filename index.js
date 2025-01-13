@@ -477,13 +477,12 @@ app.get('/shows/:imdb', async (req, res) => {
             <head>
                 <title>${title}</title>
                 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-               <style>
-   
-                @font-face {
+                <style>
+                 @font-face {
                     font-family: 'Wonderly';
                     src: url('/Wonderly.otf') format('opentype');
                 }
-                     :root {
+                    :root {
                         --bg-color: #121212;
                         --card-bg: #1E1E1E;
                         --accent-color: #8B5CF6;
@@ -502,7 +501,7 @@ app.get('/shows/:imdb', async (req, res) => {
                         color: var(--text-color);
                     }
 
-                    .navbar {
+                     .navbar {
         position: fixed;
         top: 20px;
         left: 50%;
@@ -520,6 +519,10 @@ app.get('/shows/:imdb', async (req, res) => {
         border: 2px solid var(--accent-color);
         z-index: 1000;
     }
+
+                    .navbar-container {
+                    margin-bottom: 20px
+                    }
 
                     .logo {
                         font-size: 24px;
@@ -567,9 +570,6 @@ app.get('/shows/:imdb', async (req, res) => {
                         cursor: pointer;
                         transition: background-color 0.3s;
                     }
-                        .navbar-container {
-                        margin-bottom: 20px;
-                        }
 
                     .search-icon:hover {
                         background: var(--accent-hover);
@@ -584,39 +584,37 @@ app.get('/shows/:imdb', async (req, res) => {
     
                     .container {
                         display: grid;
-                        grid-template-columns: 70% 30%;
+                        grid-template-columns: 1fr; /* Stack items vertically */                       
                         gap: 2rem;
                         max-width: 1800px;
                         margin: 0 auto;
-                        padding: 2rem;
+                        padding: 1rem; /* Reduce padding for smaller screens */ 
                         padding-top: 100px;
+                        
+                   
+        
+    
                     }
     
                     .video-section {
                         position: relative;
                     }
     
-                   iframe {
-    width: 100%;
-    aspect-ratio: 16/9; /* Maintains the 16:9 ratio */
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px var(--shadow);
-    max-width: 100%; /* Ensures it doesn’t exceed the container's width */
-}
+                    iframe {
+                    width: 100%; /* Takes full width of its container */
+                    max-width: 100%; /* Prevents overflow */
+                    aspect-ratio: 16/9; /* Maintains proper ratio */
+                    border: none;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px var(--shadow);
+                }
 
-@media (max-width: 768px) {
-    iframe {
-        aspect-ratio: 16/9; /* Adjusts proportionally for smaller screens */
-        border-radius: 5px; /* Slightly smaller radius on mobile */
-    }
-}
+                @media (max-width: 768px) {
+                    iframe {
+                        aspect-ratio: 16/9; /* Keeps the widescreen format */
+                        border-radius: 5px;
+                    }
 
-@media (max-width: 480px) {
-    iframe {
-        aspect-ratio: 4/3; /* Adjust ratio for smaller screens */
-    }
-}
     
                     .fullscreen-button {
                         background: var(--accent-color);
@@ -777,8 +775,7 @@ app.get('/shows/:imdb', async (req, res) => {
                         text-decoration: none;
                         color: white;
                     }
-</style>
-
+                </style>
             </head>
             <body>
                 <div class="navbar-container">
