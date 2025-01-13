@@ -182,7 +182,7 @@
 </head>
 <body>
     <div class="search-container">
-        <h1 class="logo">ALL<span>STREAM</span></h1>
+        <h1 class="logo">YES<span>MOVIES</span></h1>
         <div class="search-bar-container">
             <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
             <div class="search-icon" onclick="performSearch()">Search</div>
@@ -194,14 +194,14 @@
     </div>
 
     <footer>
-        Made with <span>♥</span> by AllStream
+        Made with <span>♥</span> by YesMovies
     </footer>
 
     <script>
         function performSearch() {
             const query = document.getElementById('searchInput').value.trim();
             if (query) {
-                const url = 'https://allstream.cc/search/' + encodeURIComponent(query);
+                const url = 'https://yesmovies.lol/search/' + encodeURIComponent(query);
                 window.location.href = url;
             }
         }
