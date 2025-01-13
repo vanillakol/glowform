@@ -171,7 +171,7 @@ app.get('/movies/:imdb', async (req, res) => {
             </head>
             <body>
                 <header>
-                    <a href="https://glowform.fly.dev"><h1>${title}</h1></a>
+                    <a href="https://allstream.cc"><h1>${title}</h1></a>
                 </header>
                 <div class="container">
                     <div>
@@ -563,7 +563,7 @@ app.get('/shows/:imdb', async (req, res) => {
             </head>
             <body>
                 <nav class="navbar">
-                    <a href="https://glowform.fly.dev/index.html" class="logo">All<span>Stream</span></a>
+                    <a href="https://allstream.cc/index.html" class="logo">All<span>Stream</span></a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
                         <div class="search-icon" onclick="performSearch()">Search</div>
@@ -571,7 +571,7 @@ app.get('/shows/:imdb', async (req, res) => {
                 </nav>
 
                 <header>
-                    <a href="https://glowform.fly.dev/index.html"><h1>${title}</h1></a>
+                    <a href="https://allstream.cc/index.html"><h1>${title}</h1></a>
                 </header>
                 <div class="container">
                     <div>
@@ -723,7 +723,7 @@ app.get('/search/:query', async (req, res) => {
             .map((movie) => {
                 const linkType = movie.type === 'tvSeries' ? 'shows' : 'movies';
                 return `
-                    <div class="movie-card" onclick="location.href='https://glowform.fly.dev/${linkType}/${movie.id}'">
+                    <div class="movie-card" onclick="location.href='https://allstream.cc/${linkType}/${movie.id}'">
                         <img src="${movie.image}" alt="${movie.primaryTitle}" />
                         <div class="movie-info">
                             <div class="movie-title">${movie.primaryTitle}</div>
@@ -924,7 +924,7 @@ app.get('/search/:query', async (req, res) => {
             </head>
             <body>
                 <nav class="navbar">
-                    <a href="https://glowform.fly.dev" class="logo">All<span>Stream</span></a>
+                    <a href="https://allstream.cc" class="logo">All<span>Stream</span></a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
                         <div class="search-icon" onclick="performSearch()">Search</div>
@@ -967,5 +967,5 @@ app.get('/search/:query', async (req, res) => {
 // Start the server
 const PORT = 8080;
 app.listen(PORT, () => {
-    console.log(`Server is running on https://glowform.fly.dev:${PORT}`);
+    console.log(`Server is running on https://allstream.cc:${PORT}`);
 });
