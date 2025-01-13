@@ -476,6 +476,13 @@ app.get('/shows/:imdb', async (req, res) => {
                 <title>${title}</title>
                 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
                 <style>
+
+
+
+                @font-face {
+                    font-family: 'Wonderly';
+                    src: url('/Wonderly.otf') format('opentype');
+                }
                     :root {
                         --bg-color: #121212;
                         --card-bg: #1E1E1E;
@@ -517,6 +524,7 @@ app.get('/shows/:imdb', async (req, res) => {
                         font-weight: bold;
                         color: var(--text-color);
                         text-decoration: none;
+                        font-family: Wonderly;
                     }
 
                     .logo span {
@@ -615,6 +623,10 @@ app.get('/shows/:imdb', async (req, res) => {
                         background-color: var(--accent-hover);
                     }
 
+                    .navbar-container{
+                    margin-bottom: 20px;
+                    }
+
                     #episodeContainer {
                         display: grid;
                         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -624,6 +636,7 @@ app.get('/shows/:imdb', async (req, res) => {
                 </style>
             </head>
             <body>
+            <div class="navbar-container">
                 <nav class="navbar">
                     <a href="https://yesmovies.lol/index.html" class="logo">YES<span>MOVIES</span></a>
                     <div class="search-bar-container">
@@ -631,6 +644,7 @@ app.get('/shows/:imdb', async (req, res) => {
                         <div class="search-icon" onclick="performSearch()">Search</div>
                     </div>
                 </nav>
+            </div>
                 <div class="container">
                     <div class="video-section">
                         <iframe id="videoPlayer" src="https://vidsrc.net/embed/tv?imdb=${imdbId}&season=1&episode=1" allowfullscreen></iframe>
