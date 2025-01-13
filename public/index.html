@@ -8,45 +8,57 @@
     <title>AllStream - Free Movie & TV Show Streaming</title>
     <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
     <style>
+        @font-face {
+            font-family: 'Wonderly';
+            src: url('Wonderly.otf') format('opentype');
+        }
+
         :root {
             --bg-color: #121212;
             --accent-color: #8B5CF6;
             --accent-hover: #7C3AED;
             --text-color: #FFFFFF;
             --nav-bg: rgba(30, 30, 30, 0.95);
-            --card-bg: #1E1E1E;
+            --grid-color: rgba(139, 92, 246, 0.1);
         }
 
         body {
             font-family: Arial, sans-serif;
             background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    transparent 45%,
+                    var(--bg-color) 65%
+                ),
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
             margin: 0;
             padding: 0;
             color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            background: var(--nav-bg);
-            border-radius: 50px;
-            padding: 15px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-        }
+        .search-container {
+        text-align: center;
+        padding: 20px;
+        width: 90%;
+        max-width: 600px;
+    }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-family: 'Wonderly', Arial, sans-serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 30px;
             color: var(--text-color);
-            text-decoration: none;
+           
         }
 
         .logo span {
@@ -54,27 +66,31 @@
         }
 
         .search-bar-container {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 5px;
-            width: 40%;
-            box-shadow: 0 0 15px var(--accent-color);
-            transition: box-shadow 0.3s ease;
-        }
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 5px;
+        width: 100%;
+        box-shadow: 0 0 20px var(--accent-color), /* Outer glow */
+                    inset 0 0 15px rgba(139, 92, 246, 0.3); /* Inner glow */
+        border: 2px solid var(--accent-color);
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+    }
 
-        .search-bar-container:focus-within {
-            box-shadow: 0 0 20px var(--accent-color);
-        }
+    .search-bar-container:focus-within {
+        box-shadow: 0 0 25px var(--accent-color), /* Stronger outer glow on focus */
+                    inset 0 0 20px rgba(139, 92, 246, 0.4); /* Stronger inner glow on focus */
+    }
 
         .search-bar {
             background: transparent;
             border: none;
             color: var(--text-color);
             width: 100%;
-            padding: 8px 15px;
-            font-size: 16px;
+            padding: 12px 20px;
+            font-size: 18px;
             outline: none;
         }
 
@@ -85,133 +101,48 @@
         .search-icon {
             background: var(--accent-color);
             width: 95px;
-            height: 35px;
+            height: 40px;
             border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 16px;
         }
 
         .search-icon:hover {
             background: var(--accent-hover);
         }
 
-        .main-content {
-            padding-top: 120px;
-            padding-inline: 20px;
-            min-height: calc(100vh - 200px);
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: bold;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-
-        .topContent {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        .links-container {
+            display: flex;
+            justify-content: center;
             gap: 20px;
-            justify-content: center;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-top: 20px;
         }
 
-        .movie-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: transform 0.2s ease, opacity 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .movie-card:hover {
-            transform: translateY(-5px);
-            opacity: 0.8;
-            cursor: pointer;
-        }
-
-        .movie-card img {
-            width: 100%;
-            aspect-ratio: 2/3;
-            object-fit: cover;
-            display: block;
-        }
-
-        .movie-info {
-            padding: 15px;
-            text-align: center;
-            background: var(--card-bg);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .movie-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-
-        .movie-meta {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .view-all {
-            text-align: right;
-            margin-top: -10px;
-            margin-bottom: 20px;
-        }
-
-        .view-all a {
+        .link {
             color: var(--accent-color);
             text-decoration: none;
-            font-size: 16px;
-        }
-
-        .view-all a:hover {
-            color: var(--accent-hover);
-        }
-
-        .view-all-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: transform 0.2s ease, opacity 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            aspect-ratio: 2/3;
-            text-decoration: none;
-            color: var(--text-color);
-        }
-
-        .view-all-card:hover {
-            transform: translateY(-5px);
-            opacity: 0.8;
-        }
-
-        .view-all-text {
             font-size: 18px;
-            font-weight: bold;
+            transition: color 0.3s;
+            padding: 10px 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 25px;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .link:hover {
+            color: var(--text-color);
+            background-color: var(--accent-color);
         }
 
         footer {
+            position: fixed;
+            bottom: 20px;
             text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
             color: var(--text-color);
             opacity: 0.8;
             font-size: 14px;
@@ -220,122 +151,50 @@
         footer span {
             color: var(--accent-color);
         }
+
+        .main-content {
+    padding-top: 120px;
+    padding-inline: 20px;
+    min-height: calc(100vh - 200px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    padding: 0 20px;
+}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="/" class="logo">All<span>Stream</span></a>
+    <div class="search-container">
+        <h1 class="logo">ALL<span>STREAM</span></h1>
         <div class="search-bar-container">
             <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
             <div class="search-icon" onclick="performSearch()">Search</div>
         </div>
-    </nav>
-
-    <main class="main-content">
-        <section>
-            <h2 class="section-title">Top Movies</h2>
-            <div class="topContent">
-                <a href="topMovies.html" class="view-all-card">
-                    <div class="view-all-text">View All TOP Movies</div>
-                </a>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/movies/tt5040012'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BY2FhZGE3NmEtNWJjOC00NDI1LWFhMTQtMjcxNmQzZmEwNGIzXkEyXkFqcGc@._V1_.jpg" alt="Nosferatu">
-                    <div class="movie-info">
-                        <div class="movie-title">Nosferatu</div>
-                        <div class="movie-meta">
-                            <span>⭐ 7.8</span>
-                            <span> • 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/movies/tt14948432'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BZmFkMjE4NjQtZTVmZS00MDZjLWE2ZmEtZTkzODljNjhlNWUxXkEyXkFqcGc@._V1_.jpg" alt="Red One">
-                    <div class="movie-info">
-                        <div class="movie-title">Red One</div>
-                        <div class="movie-meta">
-                            <span>⭐ 6.4</span>
-                            <span> • 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/movies/tt21382296'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTNkMjQzNmQtNzE4ZC00NDlmLTkyYjAtZDZkYTQ5NjBmYThlXkEyXkFqcGc@._V1_.jpg" alt="Carry-On">
-                    <div class="movie-info">
-                        <div class="movie-title">Carry-On</div>
-                        <div class="movie-meta">
-                            <span>⭐ 6.5</span>
-                            <span> • 2024</span>
-                        </div>
-                    </div>
-                </div>
-                 <div class="movie-card" onclick="location.href='https://allstream.cc/movies/tt18259086'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjZjNjE5NDEtOWJjYS00Mjk2LWI1ZDYtOWI1ZWI3MzRjM2UzXkEyXkFqcGc@._V1_.jpg" alt="Sonic the Hedgehog 3">
-            <div class="movie-info">
-                <div class="movie-title">Sonic the Hedgehog 3</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.3</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
+        <div class="links-container">
+            <a href="topMovies.html" class="link">Top Movies</a>
+            <a href="ts.html" class="link">Top Shows</a>
         </div>
-                
-                <!-- Add more movie cards -->
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">Top Shows</h2>
-            <div class="topContent">
-                <a href="ts.html" class="view-all-card">
-                    <div class="view-all-text">View All TOP Shows</div>
-                </a>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/shows/tt10168312'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BYWFiOTcwNzItMTg5Mi00ZTU4LThkZWYtYWNmZWQ1ODE5ZTVmXkEyXkFqcGc@._V1_.jpg" alt="What If...?">
-                    <div class="movie-info">
-                        <div class="movie-title">What If...?</div>
-                        <div class="movie-meta">
-                            <span>⭐ 7.4</span>
-                            <span> • 2021</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/shows/tt0944947'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTNhMDJmNmYtNDQ5OS00ODdlLWE0ZDAtZTgyYTIwNDY3OTU3XkEyXkFqcGc@._V1_.jpg" alt="Game of Thrones">
-                    <div class="movie-info">
-                        <div class="movie-title">Game of Thrones</div>
-                        <div class="movie-meta">
-                            <span>⭐ 9.2</span>
-                            <span> • 2011</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/shows/tt10919420'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BYTYzMTlmNDctNmVkNS00YzRlLWE5MjAtODdjZWRkYzRlNWVlXkEyXkFqcGc@._V1_.jpg" alt="Squid Game">
-                    <div class="movie-info">
-                        <div class="movie-title">Squid Game</div>
-                        <div class="movie-meta">
-                            <span>⭐ 8.0</span>
-                            <span> • 2021</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card" onclick="location.href='https://allstream.cc/shows/tt14186672'">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNTRkY2ZkNzUtMzBlNC00NTc0LWE0ZDQtMWZiNGU5OWEyZGU4XkEyXkFqcGc@._V1_.jpg" alt="Landman">
-                    <div class="movie-info">
-                        <div class="movie-title">Landman</div>
-                        <div class="movie-meta">
-                            <span>⭐ 8.3</span>
-                            <span> • 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more show cards -->
-            </div>
-        </section>
-    </main>
+    </div>
 
     <footer>
-        Made with <span>♥</span> by Zigger
+        Made with <span>♥</span> by AllStream
     </footer>
 
     <script>
