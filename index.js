@@ -477,31 +477,32 @@ app.get('/shows/:imdb', async (req, res) => {
             <head>
                 <title>${title}</title>
                 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-                <style>
-                 @font-face {
-                    font-family: 'Wonderly';
-                    src: url('/Wonderly.otf') format('opentype');
-                }
-                    :root {
-                        --bg-color: #121212;
-                        --card-bg: #1E1E1E;
-                        --accent-color: #8B5CF6;
-                        --accent-hover: #7C3AED;
-                        --text-color: #FFFFFF;
-                        --text-secondary: rgba(255, 255, 255, 0.7);
-                        --shadow: rgba(0, 0, 0, 0.3);
-                        --nav-bg: rgba(30, 30, 30, 0.95);
-                    }
-    
-                    body {
-                        font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
-                        margin: 0;
-                        padding: 0;
-                        background-color: var(--bg-color);
-                        color: var(--text-color);
-                    }
+               <style>
+    @font-face {
+        font-family: 'Wonderly';
+        src: url('/Wonderly.otf') format('opentype');
+    }
 
-                     .navbar {
+    :root {
+        --bg-color: #121212;
+        --card-bg: #1E1E1E;
+        --accent-color: #8B5CF6;
+        --accent-hover: #7C3AED;
+        --text-color: #FFFFFF;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --shadow: rgba(0, 0, 0, 0.3);
+        --nav-bg: rgba(30, 30, 30, 0.95);
+    }
+
+    body {
+        font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .navbar {
         position: fixed;
         top: 20px;
         left: 50%;
@@ -520,264 +521,259 @@ app.get('/shows/:imdb', async (req, res) => {
         z-index: 1000;
     }
 
-                    .navbar-container {
-                    margin-bottom: 20px
-                    }
-
-                    .logo {
-                        font-size: 24px;
-                        font-weight: bold;
-                        color: var(--text-color);
-                        text-decoration: none;
-                        font-family: Wonderly;
-                    }
-
-                    .logo span {
-                        color: var(--accent-color);
-                    }
-
-                    .search-bar-container {
-                        display: flex;
-                        align-items: center;
-                        background: rgba(255, 255, 255, 0.1);
-                        border-radius: 25px;
-                        padding: 5px;
-                        width: 40%;
-                    }
-
-                    .search-bar {
-                        background: transparent;
-                        border: none;
-                        color: var(--text-color);
-                        width: 100%;
-                        padding: 8px 15px;
-                        font-size: 16px;
-                        outline: none;
-                    }
-
-                    .search-bar::placeholder {
-                        color: rgba(255, 255, 255, 0.7);
-                    }
-
-                    .search-icon {
-                        background: var(--accent-color);
-                        width: 95px;
-                        height: 35px;
-                        border-radius: 25px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                    }
-
-                    .search-icon:hover {
-                        background: var(--accent-hover);
-                    }
-    
-                    header {
-                        background-color: var(--card-bg);
-                        color: var(--text-color);
-                        padding: 1.5rem 2rem;
-                        border-bottom: 2px solid var(--accent-color);
-                    }
-    
-                    .container {
-                        display: grid;
-                        grid-template-columns: 70% 30%;
-                        gap: 2rem;
-                        max-width: 1800px;
-                        margin: 0 auto;
-                        padding: 2rem;
-                        padding-top: 100px;
-                    }
-    
-                    .video-section {
-                        position: relative;
-                    }
-    
-                     iframe {
-    width: 100%;
-    aspect-ratio: 16/9; /* Maintains the 16:9 ratio */
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px var(--shadow);
-    max-width: 100%; /* Ensures it doesn’t exceed the container's width */
-}
-
-@media (max-width: 768px) {
-    iframe {
-        aspect-ratio: 16/9; /* Adjusts proportionally for smaller screens */
-        border-radius: 5px; /* Slightly smaller radius on mobile */
+    .navbar-container {
+        margin-bottom: 20px;
     }
-}
 
-@media (max-width: 480px) {
-    iframe {
-        aspect-ratio: 4/3; /* Adjust ratio for smaller screens */
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--text-color);
+        text-decoration: none;
+        font-family: Wonderly;
     }
-}
-    
-                    .fullscreen-button {
-                        background: var(--accent-color);
-                        color: white;
-                        border: none;
-                        padding: 0.5rem 1rem;
-                        border-radius: 5px;
-                        cursor: pointer;
-                    }
-    
-                    .video-info {
-                        margin-top: 2rem;
-                        padding: 2rem;
-                        background: var(--card-bg);
-                        border-radius: 8px;
-                        box-shadow: 0 4px 20px var(--shadow);
-                    }
-    
-                    .rating-container {
-                        display: flex;
-                        align-items: center;
-                        gap: 2rem;
-                        margin-bottom: 1.5rem;
-                    }
-    
-                    .rating-box {
-                        background: var(--accent-color);
-                        padding: 1.2rem;
-                        border-radius: 8px;
-                        text-align: center;
-                        min-width: 120px;
-                    }
-    
-                    .rating-box h4 {
-                        margin: 0;
-                        font-size: 0.8rem;
-                        color: var(--text-color);
-                        opacity: 0.9;
-                    }
-    
-                    .rating-box .value {
-                        font-size: 1.5rem;
-                        font-weight: bold;
-                        margin-top: 0.5rem;
-                    }
-    
-                    .meta-info {
-                        display: flex;
-                        gap: 1rem;
-                        flex-wrap: wrap;
-                        margin-bottom: 1.5rem;
-                    }
-    
-                    .scroll-container {
-                        display: flex;
-                        overflow-x: auto;
-                        gap: 1rem;
-                        padding: 1rem 0;
-                        margin-bottom: 1.5rem;
-                    }
-    
-                    .scroll-container::-webkit-scrollbar {
-                        height: 8px;
-                    }
-    
-                    .scroll-container::-webkit-scrollbar-track {
-                        background: var(--bg-color);
-                        border-radius: 4px;
-                    }
-    
-                    .scroll-container::-webkit-scrollbar-thumb {
-                        background: var(--accent-color);
-                        border-radius: 4px;
-                    }
-    
-                    .person-card {
-                        background: var(--accent-color);
-                        padding: 1rem;
-                        border-radius: 8px;
-                        margin-right: 1rem;
-                        min-width: 200px;
-                        transition: transform 0.2s;
-                    }
-    
-                    .person-card:hover {
-                        transform: translateY(-2px);
-                    }
-    
-                    .person-card h4 {
-                        margin: 0;
-                        font-size: 1rem;
-                        color: var(--text-color);
-                    }
-    
-                    .person-card p {
-                        margin: 0.5rem 0 0 0;
-                        font-size: 0.9rem;
-                        color: var(--text-color);
-                        opacity: 0.9;
-                    }
-    
-                    .genres-container {
-                        display: flex;
-                        gap: 0.8rem;
-                        flex-wrap: wrap;
-                        margin-bottom: 1rem;
-                    }
-    
-                    .genre-tag {
-                        background: var(--accent-color);
-                        padding: 0.5rem 1rem;
-                        border-radius: 4px;
-                        font-size: 0.9rem;
-                    }
-    
-                    .info-section {
-                        background: var(--card-bg);
-                        padding: 2rem;
-                        border-radius: 8px;
-                        box-shadow: 0 4px 20px var(--shadow);
-                    }
-    
-                    select, button {
-                        margin: 0.5rem 0;
-                        padding: 0.8rem 1.2rem;
-                        font-size: 1rem;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        background-color: var(--accent-color);
-                        color: var(--text-color);
-                        font-family: inherit;
-                        transition: background-color 0.2s;
-                    }
-    
-                    select:hover, button:hover {
-                        background-color: var(--accent-hover);
-                    }
-    
-                    select {
-                        width: 100%;
-                        margin-bottom: 1rem;
-                    }
-    
-                    #episodeContainer {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                        gap: 1rem;
-                    }
-    
-                    @media (max-width: 1024px) {
-                        .container {
-                            grid-template-columns: 1fr;
-                        }
-                    }
 
-                    a {
-                        text-decoration: none;
-                        color: white;
-                    }
-                </style>
+    .logo span {
+        color: var(--accent-color);
+    }
+
+    .search-bar-container {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 5px;
+        width: 40%;
+    }
+
+    .search-bar {
+        background: transparent;
+        border: none;
+        color: var(--text-color);
+        width: 100%;
+        padding: 8px 15px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .search-bar::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-icon {
+        background: var(--accent-color);
+        width: 95px;
+        height: 35px;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .search-icon:hover {
+        background: var(--accent-hover);
+    }
+
+    header {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        padding: 1.5rem 2rem;
+        border-bottom: 2px solid var(--accent-color);
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr; /* Stacks items vertically */
+        gap: 2rem;
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 1rem; /* Compact padding */
+        padding-top: 100px;
+    }
+
+    .video-section {
+        position: relative;
+    }
+
+    iframe {
+        width: 100%; /* Full width of the container */
+        max-width: 100%; /* Prevent overflow */
+        aspect-ratio: 16/9; /* Maintains aspect ratio */
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    @media (max-width: 768px) {
+        iframe {
+            aspect-ratio: 16/9; /* Consistent widescreen ratio */
+            border-radius: 5px;
+        }
+    }
+
+    .fullscreen-button {
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .video-info {
+        margin-top: 2rem;
+        padding: 2rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .rating-container {
+        display: flex;
+        flex-direction: column; /* Stacks items vertically */
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .rating-box {
+        background: var(--accent-color);
+        padding: 1.2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .rating-box h4 {
+        margin: 0;
+        font-size: 0.8rem;
+        color: var(--text-color);
+        opacity: 0.9;
+    }
+
+    .rating-box .value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+
+    .meta-info {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+        padding: 1rem 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-track {
+        background: var(--bg-color);
+        border-radius: 4px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 4px;
+    }
+
+    .person-card {
+        background: var(--accent-color);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-right: 1rem;
+        min-width: 200px;
+        transition: transform 0.2s;
+    }
+
+    .person-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .person-card h4 {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+
+    .person-card p {
+        margin: 0.5rem 0 0 0;
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.9;
+    }
+
+    .genres-container {
+        display: flex;
+        gap: 0.5rem; /* Compact spacing */
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    .genre-tag {
+        background: var(--accent-color);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+
+    .info-section {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    select, button {
+        margin: 0.5rem 0;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        font-family: inherit;
+        transition: background-color 0.2s;
+    }
+
+    select:hover, button:hover {
+        background-color: var(--accent-hover);
+    }
+
+    select {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #episodeContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
             </head>
             <body>
                 <div class="navbar-container">
