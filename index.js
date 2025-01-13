@@ -407,7 +407,6 @@ app.get('/movies/:imdb', async (req, res) => {
         res.status(500).send('An error occurred while fetching data.');
     }
 });
-
 app.get('/shows/:imdb', async (req, res) => {
     const imdbId = req.params.imdb;
 
@@ -483,31 +482,99 @@ app.get('/shows/:imdb', async (req, res) => {
                         --accent-color: #8B5CF6;
                         --accent-hover: #7C3AED;
                         --text-color: #FFFFFF;
-                        --text-secondary: rgba(255, 255, 255, 0.7);
                         --shadow: rgba(0, 0, 0, 0.3);
+                        --nav-bg: rgba(30, 30, 30, 0.95);
                     }
 
                     body {
-                        font-family: "Fira Code", "Fira Mono", monospace;
+                        font-family: "Fira Code", monospace;
                         margin: 0;
                         padding: 0;
                         background-color: var(--bg-color);
                         color: var(--text-color);
                     }
 
+                    .navbar {
+                        position: fixed;
+                        top: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 90%;
+                        max-width: 1200px;
+                        background: var(--nav-bg);
+                        border-radius: 50px;
+                        padding: 15px 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        box-shadow: 0 0 20px var(--accent-color);
+                        border: 2px solid var(--accent-color);
+                        z-index: 1000;
+                    }
+
+                    .logo {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: var(--text-color);
+                        text-decoration: none;
+                    }
+
+                    .logo span {
+                        color: var(--accent-color);
+                    }
+
+                    .search-bar-container {
+                        display: flex;
+                        align-items: center;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 25px;
+                        padding: 5px;
+                        width: 40%;
+                    }
+
+                    .search-bar {
+                        background: transparent;
+                        border: none;
+                        color: var(--text-color);
+                        width: 100%;
+                        padding: 8px 15px;
+                        font-size: 16px;
+                        outline: none;
+                    }
+
+                    .search-bar::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+
+                    .search-icon {
+                        background: var(--accent-color);
+                        width: 95px;
+                        height: 35px;
+                        border-radius: 25px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                    }
+
+                    .search-icon:hover {
+                        background: var(--accent-hover);
+                    }
+
                     .container {
                         display: grid;
-                        grid-template-columns: 1fr; /* Stack vertically on mobile */
+                        grid-template-columns: 1fr;
                         gap: 2rem;
                         max-width: 1200px;
                         margin: 0 auto;
                         padding: 1rem;
+                        padding-top: 100px;
                     }
 
                     @media (min-width: 768px) {
                         .container {
-                            grid-template-columns: 2fr 1fr; /* Player on the left, info on the right */
-                            gap: 1rem;
+                            grid-template-columns: 2fr 1fr;
                         }
                     }
 
@@ -557,6 +624,13 @@ app.get('/shows/:imdb', async (req, res) => {
                 </style>
             </head>
             <body>
+                <nav class="navbar">
+                    <a href="https://yesmovies.lol/index.html" class="logo">YES<span>MOVIES</span></a>
+                    <div class="search-bar-container">
+                        <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
+                        <div class="search-icon" onclick="performSearch()">Search</div>
+                    </div>
+                </nav>
                 <div class="container">
                     <div class="video-section">
                         <iframe id="videoPlayer" src="https://vidsrc.net/embed/tv?imdb=${imdbId}&season=1&episode=1" allowfullscreen></iframe>
@@ -576,6 +650,13 @@ app.get('/shows/:imdb', async (req, res) => {
                 <script>
                     ${generateEpisodeButtonsScript}
                     updateEpisodes(1);
+
+                    function performSearch() {
+                        const query = document.getElementById('searchInput').value.trim();
+                        if (query) {
+                            window.location.href = '/search/' + encodeURIComponent(query);
+                        }
+                    }
                 </script>
             </body>
             </html>
@@ -585,6 +666,7 @@ app.get('/shows/:imdb', async (req, res) => {
         res.status(500).send('An error occurred while fetching data.');
     }
 });
+
 
 
 app.get('/search/:query', async (req, res) => {
