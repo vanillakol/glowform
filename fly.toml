@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for glowform on 2025-01-12T21:26:31Z
+# fly.toml app configuration file generated for glowform-rjuroq on 2025-01-13T21:44:08Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'glowform'
+app = 'glowform-rjuroq'
 primary_region = 'dfw'
 
 [build]
