@@ -408,7 +408,6 @@ app.get('/movies/:imdb', async (req, res) => {
     }
 });
 
-
 app.get('/shows/:imdb', async (req, res) => {
     const imdbId = req.params.imdb;
 
@@ -498,11 +497,18 @@ app.get('/shows/:imdb', async (req, res) => {
 
                     .container {
                         display: grid;
-                        grid-template-columns: 1fr; /* Stack everything vertically for responsiveness */
+                        grid-template-columns: 1fr; /* Stack vertically on mobile */
                         gap: 2rem;
                         max-width: 1200px;
                         margin: 0 auto;
                         padding: 1rem;
+                    }
+
+                    @media (min-width: 768px) {
+                        .container {
+                            grid-template-columns: 2fr 1fr; /* Player on the left, info on the right */
+                            gap: 1rem;
+                        }
                     }
 
                     .video-section {
@@ -510,29 +516,14 @@ app.get('/shows/:imdb', async (req, res) => {
                     }
 
                     iframe {
-                        width: 100%; /* Full width for responsiveness */
-                        max-width: 100%; /* Prevent overflow */
-                        aspect-ratio: 16/9; /* Maintain aspect ratio */
+                        width: 100%;
+                        aspect-ratio: 16/9;
                         border: none;
                         border-radius: 8px;
                         box-shadow: 0 4px 20px var(--shadow);
                     }
 
-                    @media (max-width: 768px) {
-                        iframe {
-                            aspect-ratio: 16/9;
-                            border-radius: 5px;
-                        }
-                    }
-
-                    @media (max-width: 480px) {
-                        iframe {
-                            aspect-ratio: 4/3; /* Adjust ratio for smaller screens */
-                        }
-                    }
-
                     .video-info {
-                        margin-top: 2rem;
                         padding: 2rem;
                         background: var(--card-bg);
                         border-radius: 8px;
@@ -567,21 +558,19 @@ app.get('/shows/:imdb', async (req, res) => {
             </head>
             <body>
                 <div class="container">
-                    <div>
-                        <div class="video-section">
-                            <iframe id="videoPlayer" src="https://vidsrc.net/embed/tv?imdb=${imdbId}&season=1&episode=1" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-info">
-                            <h1>${title}</h1>
-                            <h2>Year: ${startYear}</h2>
-                            <h3>Description</h3>
-                            <p>${description}</p>
-                            <h3>Select a Season</h3>
-                            <select id="seasonDropdown" onchange="updateEpisodes(this.value)">
-                                ${seasonDropdown}
-                            </select>
-                            <div id="episodeContainer"></div>
-                        </div>
+                    <div class="video-section">
+                        <iframe id="videoPlayer" src="https://vidsrc.net/embed/tv?imdb=${imdbId}&season=1&episode=1" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h1>${title}</h1>
+                        <h2>Year: ${startYear}</h2>
+                        <h3>Description</h3>
+                        <p>${description}</p>
+                        <h3>Select a Season</h3>
+                        <select id="seasonDropdown" onchange="updateEpisodes(this.value)">
+                            ${seasonDropdown}
+                        </select>
+                        <div id="episodeContainer"></div>
                     </div>
                 </div>
                 <script>
@@ -596,6 +585,7 @@ app.get('/shows/:imdb', async (req, res) => {
         res.status(500).send('An error occurred while fetching data.');
     }
 });
+
 
 app.get('/search/:query', async (req, res) => {
     const query = req.params.query;
