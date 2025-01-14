@@ -15,168 +15,160 @@
         <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
           <title>Top Movies</title>
           <style>
-
-        @font-face {
-            font-family: 'Wonderly';
-            src: url('Wonderly.otf') format('opentype');
-        }
-              :root {
-                  --bg-color: #121212;
-                  --accent-color: #8B5CF6;
-                  --accent-hover: #7C3AED;
-                  --text-color: #FFFFFF;
-                  --nav-bg: rgba(30, 30, 30, 0.95);
-                  --card-bg: #1E1E1E;
-              }
-
-              body {
-                  font-family: Arial, sans-serif;
-                  background-color: var(--bg-color);
-                  margin: 0;
-                  padding: 0;
-                  color: var(--text-color);
-              }
-
-              h1 {
-                font-family: Wonderly;
-              }
-
-              .navbar {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 1200px;
-        background: var(--nav-bg);
-        border-radius: 50px;
-        padding: 15px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 0 20px var(--accent-color), /* Outer glow */
-                    inset 0 0 15px rgba(139, 92, 246, 0.3); /* Inner glow */
-        border: 2px solid var(--accent-color);
-        z-index: 1000;
-    }
-
-    /* Update search bar container to match the new navbar style */
-    .search-bar-container {
-        display: flex;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 25px;
-        padding: 5px;
-        width: 40%;
-        border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-              .logo {
-                font-family: Wonderly;
-                  font-size: 24px;
-                  font-weight: bold;
-                  color: var(--text-color);
-                  text-decoration: none;
-                  display: flex;
-                  align-items: center;
-              }
-
-              .logo span {
-                  color: var(--accent-color);
-              }
-
-             
-
-              .search-bar {
-                  background: transparent;
-                  border: none;
-                  color: var(--text-color);
-                  width: 100%;
-                  padding: 8px 15px;
-                  font-size: 16px;
-                  outline: none;
-              }
-
-              .search-bar::placeholder {
-                  color: rgba(255, 255, 255, 0.7);
-              }
-
-              .search-icon {
-                  background: var(--accent-color);
-                  width: 95px;
-                  height: 35px;
-                  border-radius: 25px;
-                  font-weight: 500;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  cursor: pointer;
-                  transition: background-color 0.3s;
-              }
-
-              .search-icon:hover {
-                  background: var(--accent-hover);
-              }
-
-              .page-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin: 40px 0;
-            color: var(--text-color);
-            font-weight: bold;
-        }
-
-        /* Update main-content padding to accommodate the title */
-        .main-content {
-            padding-top: 100px;
-            padding-inline: 20px;
-        }
-
+          @font-face {
+              font-family: 'Wonderly';
+              src: url('Wonderly.otf') format('opentype');
+          }
+      
+          :root {
+              --bg-color: #121212;
+              --accent-color: #8B5CF6;
+              --text-color: #FFFFFF;
+              --card-bg: #1E1E1E;
+          }
+      
+          body {
+              font-family: Arial, sans-serif;
+              background-color: var(--bg-color);
+              margin: 0;
+              padding: 0;
+              color: var(--text-color);
+          }
+      
+          h1 {
+              font-family: Wonderly;
+          }
+      
+          .navbar {
+              position: sticky;
+              top: 0;
+              width: 100%;
+              background: #1E1E1E;
+              padding: 10px 20px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              z-index: 1000;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          }
+      
+          .logo {
+              font-family: Wonderly;
+              font-size: 20px;
+              font-weight: bold;
+              color: var(--text-color);
+              text-decoration: none;
+          }
+      
+          .logo span {
+              color: var(--accent-color);
+          }
+      
+          .search-bar-container {
+              display: flex;
+              align-items: center;
+              background: rgba(255, 255, 255, 0.1);
+              border-radius: 5px;
+              padding: 5px;
+              width: 50%;
+              border: 1px solid rgba(255, 255, 255, 0.3);
+          }
+      
+          .search-bar {
+              background: transparent;
+              border: none;
+              color: var(--text-color);
+              width: 100%;
+              padding: 8px;
+              font-size: 14px;
+              outline: none;
+          }
+      
+          .search-bar::placeholder {
+              color: rgba(255, 255, 255, 0.7);
+          }
+      
+          .search-icon {
+              background: var(--accent-color);
+              padding: 5px 15px;
+              font-size: 14px;
+              font-weight: bold;
+              color: var(--text-color);
+              border-radius: 5px;
+              cursor: pointer;
+              border: none;
+          }
+      
+          .main-content {
+              padding: 20px;
+          }
+      
+          .page-title {
+              text-align: center;
+              font-size: 2rem;
+              margin: 20px 0;
+              color: var(--text-color);
+              font-weight: bold;
+          }
+      
+          .topMovies {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+              gap: 15px;
+              padding: 10px;
+          }
+      
+          .movie-card {
+              background: var(--card-bg);
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              overflow: hidden;
+              transition: transform 0.2s ease, opacity 0.3s;
+              cursor: pointer;
+          }
+      
+          .movie-card:hover {
+              transform: translateY(-3px);
+          }
+      
+          .movie-card img {
+              width: 100%;
+              height: auto;
+              display: block;
+          }
+      
+          .movie-info {
+              padding: 10px;
+              text-align: center;
+          }
+      
+          .movie-title {
+              font-size: 14px;
+              font-weight: bold;
+              color: var(--text-color);
+              margin-bottom: 5px;
+          }
+      
+          .movie-meta {
+              font-size: 12px;
+              color: rgba(255, 255, 255, 0.7);
+          }
+      
+          @media (min-width: 600px) {
               .topMovies {
-                  display: grid;
-                  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                  gap: 20px;
-                  padding: 20px;
-                  max-width: 1200px;
-                  margin: 0 auto;
+                  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
               }
-
-              .movie-card {
-   background: var(--card-bg);
-   border-radius: 8px;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-   overflow: hidden;
-   transition: transform 0.2s ease, opacity 0.3s;
-   cursor: pointer; /* Add cursor pointer */}
-
-.movie-card:hover {
-   transform: translateY(-5px);
-   opacity: 0.7; /* Adjust opacity on hover */}
-
-              .movie-card img {
-                  width: 100%;
-                  height: auto;
-                  display: block;
-              }
-
-              .movie-info {
-                  padding: 15px;
-                  text-align: center;
-                  background: var(--card-bg);
-              }
-
+      
               .movie-title {
-                  font-size: 18px;
-                  font-weight: bold;
-                  color: var(--text-color);
-                  margin-bottom: 10px;
+                  font-size: 16px;
               }
-
+      
               .movie-meta {
                   font-size: 14px;
-                  color: rgba(255, 255, 255, 0.7);
               }
-          </style>
+          }
+</style>
+
       </head>
       <body>
           <nav class="navbar">
