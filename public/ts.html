@@ -13,6 +13,11 @@
     <title>Top IMDB TV Shows - Stream Free | Yes Movies</title>
     <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
     <style>
+
+        @font-face {
+                font-family: 'Wonderly';
+                src: url('Wonderly.otf') format('opentype');
+            }   
     :root {
         --bg-color: #121212;
         --accent-color: #8B5CF6;
@@ -48,6 +53,7 @@
         font-weight: bold;
         color: var(--text-color);
         text-decoration: none;
+        font-family: Wonderly;
     }
 
     .search-bar-container {
@@ -57,7 +63,7 @@
         padding: 5px;
         border-radius: 4px;
         position: relative; /* Allows left positioning */
-        left: -20px; /* Adjust this value to move further left */
+        left: -40px; /* Adjust this value to move further left */
     }
 
     .search-bar {
@@ -128,13 +134,23 @@
         color: rgba(255, 255, 255, 0.7);
     }
 
+    .page-title{
+        display: flex;
+        font-family: Wonderly;
+        justify-content: center;
+    }
+
+    .yes {
+        color: #8B5CF6;
+    }
+
     @media (max-width: 768px) {
         .navbar {
             padding: 10px;
         }
 
         .search-bar-container {
-            width: 100%;
+            width: 50%;
         }
 
         .search-icon {
@@ -146,7 +162,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">YES<span>MOVIES</span></a>
+        <a href="/" class="logo"><span class="yes">YES</span><span>MOVIES</span></a>
         <div class="search-bar-container">
             <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
             <div class="search-icon" onclick="performSearch()">Search</div>
