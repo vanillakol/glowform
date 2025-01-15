@@ -77,23 +77,23 @@ app.get('/movies/:imdb', async (req, res) => {
                     }
 
                     .navbar {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 1200px;
-        background: var(--nav-bg);
-        border-radius: 50px;
-        padding: 15px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 0 20px var(--accent-color), /* Outer glow */
-                    inset 0 0 15px rgba(139, 92, 246, 0.3); /* Inner glow */
-        border: 2px solid var(--accent-color);
-        z-index: 1000;
-    }
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 90%;
+                    max-width: 1200px;
+                    background: var(--nav-bg);
+                    border-radius: 5px; /* Changed to a smaller value for subtle rounding */
+                    padding: 15px 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    box-shadow: 0 2px 10px var(--shadow); /* Simplified shadow for a clean look */
+                    border: 1px solid var(--accent-color); /* Subtle border */
+                    z-index: 1000;
+}
+
 
                     .logo {
                         font-size: 24px;
@@ -114,6 +114,7 @@ app.get('/movies/:imdb', async (req, res) => {
                         border-radius: 25px;
                         padding: 5px;
                         width: 40%;
+                        
                     }
 
                     .search-bar {
@@ -502,22 +503,23 @@ app.get('/shows/:imdb', async (req, res) => {
                     }
 
                     .navbar {
-                        position: fixed;
-                        top: 20px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 90%;
-                        max-width: 1200px;
-                        background: var(--nav-bg);
-                        border-radius: 50px;
-                        padding: 15px 30px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        box-shadow: 0 0 20px var(--accent-color);
-                        border: 2px solid var(--accent-color);
-                        z-index: 1000;
-                    }
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 1200px;
+                background: var(--nav-bg);
+                border-radius: 5px; /* Changed to a subtle rounded edge */
+                padding: 15px 30px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0 2px 10px var(--shadow); /* Simplified shadow */
+                border: 1px solid var(--accent-color); /* Subtle border */
+                z-index: 1000;
+            }
+
 
                     .logo {
                         font-size: 24px;
@@ -768,28 +770,29 @@ app.get('/search/:query', async (req, res) => {
                 <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
                 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
                 <style>
-                @font-face {
-                    font-family: 'Wonderly';
-                    src: url('/Wonderly.otf') format('opentype');
-                }
-                    :root {
-                        --bg-color: #121212;
-                        --accent-color: #8B5CF6;
-                        --accent-hover: #7C3AED;
-                        --text-color: #FFFFFF;
-                        --nav-bg: rgba(30, 30, 30, 0.95);
-                        --card-bg: #1E1E1E;
-                    }
+    @font-face {
+        font-family: 'Wonderly';
+        src: url('/Wonderly.otf') format('opentype');
+    }
 
-                    body {
-                        font-family: "Arial";
-                        margin: 0;
-                        padding: 0;
-                        background-color: var(--bg-color);
-                        color: var(--text-color);
-                    }
+    :root {
+        --bg-color: #121212;
+        --accent-color: #8B5CF6;
+        --accent-hover: #7C3AED;
+        --text-color: #FFFFFF;
+        --nav-bg: rgba(30, 30, 30, 0.95);
+        --card-bg: #1E1E1E;
+    }
 
-                    .navbar {
+    body {
+        font-family: "Arial";
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .navbar {
         position: fixed;
         top: 20px;
         left: 50%;
@@ -797,156 +800,156 @@ app.get('/search/:query', async (req, res) => {
         width: 90%;
         max-width: 1200px;
         background: var(--nav-bg);
-        border-radius: 50px;
+        border-radius: 5px; /* Subtle rounding */
         padding: 15px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 0 20px var(--accent-color), /* Outer glow */
-                    inset 0 0 15px rgba(139, 92, 246, 0.3); /* Inner glow */
-        border: 2px solid var(--accent-color);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Simple shadow */
+        border: 1px solid var(--accent-color);
         z-index: 1000;
     }
 
-                    .logo {
-                        font-size: 24px;
-                        font-weight: bold;
-                        color: var(--text-color);
-                        text-decoration: none;
-                        font-family: Wonderly;
-                    }
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--text-color);
+        text-decoration: none;
+        font-family: Wonderly;
+    }
 
-                    .logo span {
-                        color: var(--accent-color);
-                    }
+    .logo span {
+        color: var(--accent-color);
+    }
 
-                    .search-bar-container {
-                        display: flex;
-                        align-items: center;
-                        background: rgba(255, 255, 255, 0.1);
-                        border-radius: 25px;
-                        padding: 5px;
-                        width: 40%;
-                        border: 1px solid rgba(139, 92, 246, 0.3);
-                    }
+    .search-bar-container {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        padding: 5px;
+        width: 40%;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+    }
 
-                    .search-bar-container:focus-within {
-                        box-shadow: 0 0 20px var(--accent-color);
-                    }
+    .search-bar-container:focus-within {
+        box-shadow: 0 0 10px var(--accent-color);
+    }
 
-                    .search-bar {
-                        background: transparent;
-                        border: none;
-                        color: var(--text-color);
-                        width: 100%;
-                        padding: 8px 15px;
-                        font-size: 16px;
-                        outline: none;
-                    }
+    .search-bar {
+        background: transparent;
+        border: none;
+        color: var(--text-color);
+        width: 100%;
+        padding: 8px 15px;
+        font-size: 16px;
+        outline: none;
+    }
 
-                    .search-bar::placeholder {
-                        color: rgba(255, 255, 255, 0.7);
-                    }
+    .search-bar::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
 
-                    .search-icon {
-                        background: var(--accent-color);
-                        width: 95px;
-                        height: 35px;
-                        border-radius: 25px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                    }
+    .search-icon {
+        background: var(--accent-color);
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-                    .search-icon:hover {
-                        background: var(--accent-hover);
-                    }
+    .search-icon:hover {
+        background: var(--accent-hover);
+    }
 
-                    .main-content {
-                        padding-top: 120px;
-                        padding-inline: 20px;
-                        min-height: calc(100vh - 200px);
-                    }
+    .main-content {
+        padding-top: 100px;
+        padding-inline: 20px;
+        min-height: calc(100vh - 200px);
+    }
 
-                    .movie-grid {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                        gap: 20px;
-                        justify-content: center;
-                        max-width: 1200px;
-                        margin: 0 auto;
-                    }
+    .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller column size for better visibility */
+        gap: 15px;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-                    .movie-card {
-                        background: var(--card-bg);
-                        border-radius: 8px;
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                        overflow: hidden;
-                        transition: transform 0.2s ease, opacity 0.3s;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                    }
+    .movie-card {
+        background: var(--card-bg);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: transform 0.2s ease, opacity 0.3s;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
-                    .movie-card:hover {
-                        transform: translateY(-5px);
-                        opacity: 0.8;
-                        cursor: pointer;
-                    }
+    .movie-card:hover {
+        transform: translateY(-5px);
+        opacity: 0.8;
+        cursor: pointer;
+    }
 
-                    .movie-card img {
-                        width: 100%;
-                        aspect-ratio: 2/3;
-                        object-fit: cover;
-                        display: block;
-                    }
+    .movie-card img {
+        width: 100%;
+        aspect-ratio: 3/4; /* Smaller aspect ratio for better visibility */
+        object-fit: cover;
+        display: block;
+    }
 
-                    .movie-info {
-                        padding: 15px;
-                        text-align: center;
-                        background: var(--card-bg);
-                        flex-grow: 1;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                    }
+    .movie-info {
+        padding: 10px;
+        text-align: center;
+        background: var(--card-bg);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-                    .movie-title {
-                        font-size: 18px;
-                        font-weight: bold;
-                        color: var(--text-color);
-                        margin-bottom: 10px;
-                    }
+    .movie-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--text-color);
+        margin-bottom: 5px;
+    }
 
-                    .movie-meta {
-                        font-size: 14px;
-                        color: rgba(255, 255, 255, 0.7);
-                    }
+    .movie-meta {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+    }
 
-                      .section-title {
-        font-size: 28px;
+    .section-title {
+        font-size: 24px;
         font-weight: bold;
         margin-top: 40px;
         margin-bottom: 20px;
         color: var(--text-color);
-        text-align: center; /* Center the search results title */
+        text-align: center;
     }
 
-                    footer {
-                        text-align: center;
-                        padding: 40px 0;
-                        margin-top: 60px;
-                        color: var(--text-color);
-                        opacity: 0.8;
-                        font-size: 14px;
-                    }
+    footer {
+        text-align: center;
+        padding: 40px 0;
+        margin-top: 60px;
+        color: var(--text-color);
+        opacity: 0.8;
+        font-size: 14px;
+    }
 
-                    footer span {
-                        color: var(--accent-color);
-                    }
-                </style>
+    footer span {
+        color: var(--accent-color);
+    }
+</style>
+
             </head>
             <body>
                 <nav class="navbar">
