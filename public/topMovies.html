@@ -1,1206 +1,1205 @@
 
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Stream top IMDB rated movies for free. Watch the highest-rated films including Interstellar, The Lion King, Harry Potter, and more. No subscription required.">
-        <meta name="keywords" content="top IMDB movies, free movies, highest rated movies, stream movies free, best movies, IMDB top rated">
-        <meta property="og:title" content="Top IMDB Movies - Stream Free | Yes Movies">
-        <meta property="og:description" content="Watch the highest-rated IMDB movies for free. Stream classics and new releases instantly with no subscription.">
-        <meta property="og:type" content="website">
-      <meta name="robots" content="index, follow">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stream top IMDB rated movies for free. Watch the highest-rated films including Interstellar, The Lion King, Harry Potter, and more. No subscription required.">
+  <meta name="keywords" content="top IMDB movies, free movies, highest rated movies, stream movies free, best movies, IMDB top rated">
+  <meta property="og:title" content="Top IMDB Movies - Stream Free | Yes Movies">
+  <meta property="og:description" content="Watch the highest-rated IMDB movies for free. Stream classics and new releases instantly with no subscription.">
+  <meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 
-        <title>Top IMDB Movies - Stream Free | Yes Movies</title>
-        <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
-          <title>Top Movies</title>
-          <style>
-          @font-face {
-              font-family: 'Wonderly';
-              src: url('Wonderly.otf') format('opentype');
-          }
-      
-          :root {
-              --bg-color: #121212;
-              --accent-color: #8B5CF6;
-              --text-color: #FFFFFF;
-              --card-bg: #1E1E1E;
-          }
-      
-          body {
-              font-family: Arial, sans-serif;
-              background-color: var(--bg-color);
-              margin: 0;
-              padding: 0;
-              color: var(--text-color);
-          }
-      
-          h1 {
-              font-family: Wonderly;
-          }
-      
-          .navbar {
-              position: sticky;
-              top: 0;
-              width: 100%;
-              background: #1E1E1E;
-              padding: 10px 20px;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              z-index: 1000;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-          }
-      
-          .logo {
-              font-family: Wonderly;
-              font-size: 20px;
-              font-weight: bold;
-              color: var(--text-color);
-              text-decoration: none;
-          }
-      
-          .logo span {
-              color: var(--accent-color);
-          }
-      
-         .search-bar-container {
+  <title>Top IMDB Movies - Stream Free | Yes Movies</title>
+  <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
+    <title>Top Movies</title>
+    <style>
+    @font-face {
+        font-family: 'Wonderly';
+        src: url('Wonderly.otf') format('opentype');
+    }
+
+    :root {
+        --bg-color: #121212;
+        --accent-color: #8B5CF6;
+        --text-color: #FFFFFF;
+        --card-bg: #1E1E1E;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+    }
+
+    h1 {
+        font-family: Wonderly;
+    }
+
+    .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: #1E1E1E;
+        padding: 10px 20px;
         display: flex;
         align-items: center;
-        background: #333;
-        padding: 5px;
-        border-radius: 4px;
-        position: relative; /* Allows left positioning */
-        left: -20px; /* Adjust this value to move further left */
+        justify-content: space-between;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
-      
-          .search-bar {
-              background: transparent;
-              border: none;
-              color: var(--text-color);
-              width: 100%;
-              padding: 8px;
-              font-size: 14px;
-              outline: none;
-                  margin-right: 20px;
-          }
-      
-          .search-bar::placeholder {
-              color: rgba(255, 255, 255, 0.7);
-          }
-      
-          .search-icon {
-              background: var(--accent-color);
-              padding: 5px 15px;
-              font-size: 14px;
-              font-weight: bold;
-              color: var(--text-color);
-              border-radius: 5px;
-              cursor: pointer;
-              border: none;
-          }
-      
-          .main-content {
-              padding: 20px;
-          }
-      
-          .page-title {
-              text-align: center;
-              font-size: 2rem;
-              margin: 20px 0;
-              color: var(--text-color);
-              font-weight: bold;
-          }
-      
-          .topMovies {
-              display: grid;
-              grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-              gap: 15px;
-              padding: 10px;
-          }
-      
-          .movie-card {
-              background: var(--card-bg);
-              border-radius: 5px;
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-              overflow: hidden;
-              transition: transform 0.2s ease, opacity 0.3s;
-              cursor: pointer;
-          }
-      
-          .movie-card:hover {
-              transform: translateY(-3px);
-          }
-      
-          .movie-card img {
-              width: 100%;
-              height: auto;
-              display: block;
-          }
-      
-          .movie-info {
-              padding: 10px;
-              text-align: center;
-          }
-      
-          .movie-title {
-              font-size: 14px;
-              font-weight: bold;
-              color: var(--text-color);
-              margin-bottom: 5px;
-          }
-      
-          .movie-meta {
-              font-size: 12px;
-              color: rgba(255, 255, 255, 0.7);
-          }
-      
-          @media (min-width: 600px) {
-              .topMovies {
-                  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-              }
-      
-              .movie-title {
-                  font-size: 16px;
-              }
-      
-              .movie-meta {
-                  font-size: 14px;
-              }
-          }
-</style>
 
-      </head>
-      <body>
-          <nav class="navbar">
-              <a href="/" class="logo">Yes<span>Movies</span></a>
-              <div class="search-bar-container">
-                  <input id="searchInput" type="text" class="search-bar" placeholder="Search movies...">
-                  <div class="search-icon" onclick="performSearch()">Search</div>
-              </div>
-          </nav>
+    .logo {
+        font-family: Wonderly;
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--text-color);
+        text-decoration: none;
+    }
 
-          <main class="main-content">
-            <h1 class="page-title">Top IMDB Movies</h1>
-            <div class="topMovies">
-    
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt5040012'">
-            <img src="https://m.media-amazon.com/images/M/MV5BY2FhZGE3NmEtNWJjOC00NDI1LWFhMTQtMjcxNmQzZmEwNGIzXkEyXkFqcGc@._V1_.jpg" alt="Nosferatu">
-            <div class="movie-info">
-                <div class="movie-title">Nosferatu</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.8</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14948432'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZmFkMjE4NjQtZTVmZS00MDZjLWE2ZmEtZTkzODljNjhlNWUxXkEyXkFqcGc@._V1_.jpg" alt="Red One">
-            <div class="movie-info">
-                <div class="movie-title">Red One</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt21382296'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTNkMjQzNmQtNzE4ZC00NDlmLTkyYjAtZDZkYTQ5NjBmYThlXkEyXkFqcGc@._V1_.jpg" alt="Carry-On">
-            <div class="movie-info">
-                <div class="movie-title">Carry-On</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.5</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt5950044'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZjFhZmU5NzUtZTg4Zi00ZjRjLWI0YmQtODk2MzI4YjNhYTdkXkEyXkFqcGc@._V1_.jpg" alt="Superman">
-            <div class="movie-info">
-                <div class="movie-title">Superman</div>
-                <div class="movie-meta">
-                    <span>⭐ N/A</span>
-                    <span> • 2025</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt16539454'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_.jpg" alt="Pushpa: The Rule - Part 2">
-            <div class="movie-info">
-                <div class="movie-title">Pushpa: The Rule - Part 2</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt18259086'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjZjNjE5NDEtOWJjYS00Mjk2LWI1ZDYtOWI1ZWI3MzRjM2UzXkEyXkFqcGc@._V1_.jpg" alt="Sonic the Hedgehog 3">
-            <div class="movie-info">
-                <div class="movie-title">Sonic the Hedgehog 3</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.3</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt13186482'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYjBkOWUwODYtYWI3YS00N2I0LWEyYTktOTJjM2YzOTc3ZDNlXkEyXkFqcGc@._V1_.jpg" alt="Mufasa: The Lion King">
-            <div class="movie-info">
-                <div class="movie-title">Mufasa: The Lion King</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0314331'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYWRlZjcwYTgtYWJkOS00MGYwLTk3Y2ItNmU4NTg5Nzg2YTQ2XkEyXkFqcGc@._V1_.jpg" alt="Love Actually">
-            <div class="movie-info">
-                <div class="movie-title">Love Actually</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.6</span>
-                    <span> • 2003</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt9218128'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMWYzZTM5ZGQtOGE5My00NmM2LWFlMDEtMGNjYjdmOWM1MzA1XkEyXkFqcGc@._V1_.jpg" alt="Gladiator II">
-            <div class="movie-info">
-                <div class="movie-title">Gladiator II</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0097958'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZDgxYzI2YWItNmUyNS00ZWE4LWEzZDctYTk1M2VkYjhkOWVmXkEyXkFqcGc@._V1_.jpg" alt="National Lampoon's Christmas Vacation">
-            <div class="movie-info">
-                <div class="movie-title">National Lampoon's Christmas Vacation</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.5</span>
-                    <span> • 1989</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27403986'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjM4YjA1NTItOWI3Ni00MzAwLThmMjMtNmM2MWY2Y2ZmOGIzXkEyXkFqcGc@._V1_.jpg" alt="Juror #2">
-            <div class="movie-info">
-                <div class="movie-title">Juror #2</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt24458622'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNDdhYTY4ZTEtZTlhZS00ZWI1LWFjYzQtMWRkMjIzN2E5NjBjXkEyXkFqcGc@._V1_.jpg" alt="The Six Triple Eight">
-            <div class="movie-info">
-                <div class="movie-title">The Six Triple Eight</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0099785'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNzNmNmQ2ZDEtMTc1MS00NjNiLThlMGUtZmQxNTg1Nzg5NWMzXkEyXkFqcGc@._V1_.jpg" alt="Home Alone">
-            <div class="movie-info">
-                <div class="movie-title">Home Alone</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.7</span>
-                    <span> • 1990</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0095016'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMGNlYmM1NmQtYWExMS00NmRjLTg5ZmEtMmYyYzJkMzljYWMxXkEyXkFqcGc@._V1_.jpg" alt="Die Hard">
-            <div class="movie-info">
-                <div class="movie-title">Die Hard</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.2</span>
-                    <span> • 1988</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt11563598'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYTA2NTA5NDYtMzlkOC00MTQxLWI0NDQtMzk2M2YzMGE4MTkxXkEyXkFqcGc@._V1_.jpg" alt="A Complete Unknown">
-            <div class="movie-info">
-                <div class="movie-title">A Complete Unknown</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.8</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0038650'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMDM4OWFhYjEtNTE5Yy00NjcyLTg5N2UtZDQwNDZlYjlmNDU5XkEyXkFqcGc@._V1_.jpg" alt="It's a Wonderful Life">
-            <div class="movie-info">
-                <div class="movie-title">It's a Wonderful Life</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.6</span>
-                    <span> • 1946</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt1262426'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOWMwYjYzYmMtMWQ2Ni00NWUwLTg2MzAtYzkzMDBiZDIwOTMwXkEyXkFqcGc@._V1_.jpg" alt="Wicked">
-            <div class="movie-info">
-                <div class="movie-title">Wicked</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.9</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt30057084'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMmUwODYwODAtYWZkZS00YmUwLWFmMWEtOGNjMjE2NDk3OWIwXkEyXkFqcGc@._V1_.jpg" alt="Babygirl">
-            <div class="movie-info">
-                <div class="movie-title">Babygirl</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.6</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt10655524'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYzM2NGMzNGQtZjNhMi00MTVkLTg2ZGQtN2M4OTllYzU1Y2Y0XkEyXkFqcGc@._V1_.jpg" alt="It Ends with Us">
-            <div class="movie-info">
-                <div class="movie-title">It Ends with Us</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.5</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt28607951'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYThiN2M0NTItODRmNC00NDhlLWFiYTgtMWM2YTEyYzI3ZTY1XkEyXkFqcGc@._V1_.jpg" alt="Anora">
-            <div class="movie-info">
-                <div class="movie-title">Anora</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.9</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0170016'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNDAwMjFhYTEtNzYyMS00YmY2LTg3MGEtZTRkNWNiMDI4MDRkXkEyXkFqcGc@._V1_.jpg" alt="How the Grinch Stole Christmas">
-            <div class="movie-info">
-                <div class="movie-title">How the Grinch Stole Christmas</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.4</span>
-                    <span> • 2000</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8790086'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZDU0YTI5ODAtN2NmMS00YTg3LTgyNDItN2RmOWEzOTkzZjcyXkEyXkFqcGc@._V1_.jpg" alt="Kraven: The Hunter">
-            <div class="movie-info">
-                <div class="movie-title">Kraven: The Hunter</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0085334'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZWZhYzI1YjktYzJjYy00NjIwLWE0MGItNWM4YWM2ZjFkNGM0XkEyXkFqcGc@._V1_.jpg" alt="A Christmas Story">
-            <div class="movie-info">
-                <div class="movie-title">A Christmas Story</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.9</span>
-                    <span> • 1983</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0319343'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNDQ0ZWE2NzgtNGNhMC00MDIwLWI1MjUtYjYxZGRiM2UyYTQzXkEyXkFqcGc@._V1_.jpg" alt="Elf">
-            <div class="movie-info">
-                <div class="movie-title">Elf</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.1</span>
-                    <span> • 2003</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt17526714'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZDQ1NGE5MGMtYzdlZC00ODExLWJlMDMtNWU4NjA5OWYwMDEwXkEyXkFqcGc@._V1_.jpg" alt="The Substance">
-            <div class="movie-info">
-                <div class="movie-title">The Substance</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2396431'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMDNjMzcxNTEtODRjYi00MGQ4LWE3YjAtNjllYzE1OThmZmRhXkEyXkFqcGc@._V1_.jpg" alt="Dear Santa">
-            <div class="movie-info">
-                <div class="movie-title">Dear Santa</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0047673'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYzZlOTBmZDgtMWIwMS00YTNlLTllNWYtZTk1MmY0ZWU3MzQzXkEyXkFqcGc@._V1_.jpg" alt="White Christmas">
-            <div class="movie-info">
-                <div class="movie-title">White Christmas</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.5</span>
-                    <span> • 1954</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0104431'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOGEyYzRmNzYtYzJjZi00ZjhlLWJiNDktYzZhNTgxMzc1NThlXkEyXkFqcGc@._V1_.jpg" alt="Home Alone 2: Lost in New York">
-            <div class="movie-info">
-                <div class="movie-title">Home Alone 2: Lost in New York</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.9</span>
-                    <span> • 1992</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt28015403'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMzFiMWM4YjAtY2Y3Yi00MDIzLTk0N2MtYTAwNGM3ZmMwODhlXkEyXkFqcGc@._V1_.jpg" alt="Heretic">
-            <div class="movie-info">
-                <div class="movie-title">Heretic</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt17163970'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTk3M2YwMGUtZDJiZS00MDNkLWIyZDEtY2VjMWYyZDFmZjMzXkEyXkFqcGc@._V1_.jpg" alt="Wallace & Gromit: Vengeance Most Fowl">
-            <div class="movie-info">
-                <div class="movie-title">Wallace & Gromit: Vengeance Most Fowl</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.9</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt20215234'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYjgxMDI5NmMtNTU3OS00ZDQxLTgxZmEtNzY1ZTBmMDY4NDRkXkEyXkFqcGc@._V1_.jpg" alt="Conclave">
-            <div class="movie-info">
-                <div class="movie-title">Conclave</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt26625693'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZWIxOGQyYjYtOGEwOC00YWNjLWJmNTktZjJlM2RmNTdjMmVlXkEyXkFqcGc@._V1_.jpg" alt="The Order">
-            <div class="movie-info">
-                <div class="movie-title">The Order</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.9</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0457939'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZmEwNDg0M2QtMDdiNy00YTliLTk4ZjctOThjZjczODVmMTdkXkEyXkFqcGc@._V1_.jpg" alt="The Holiday">
-            <div class="movie-info">
-                <div class="movie-title">The Holiday</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2006</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0172495'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYWQ4YmNjYjEtOWE1Zi00Y2U4LWI4NTAtMTU0MjkxNWQ1ZmJiXkEyXkFqcGc@._V1_.jpg" alt="Gladiator">
-            <div class="movie-info">
-                <div class="movie-title">Gladiator</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.5</span>
-                    <span> • 2000</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14855468'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZWRkZjQwNDctOWY2Yy00ZTczLTg2ZTMtMDBlYTVhNGE1OGYzXkEyXkFqcGc@._V1_.jpg" alt="That Christmas">
-            <div class="movie-info">
-                <div class="movie-title">That Christmas</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.8</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0096061'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYWY3ODUyZTQtMTQyZS00ZWIyLTk3M2YtYzU5ZWQ3MTEwZGU1XkEyXkFqcGc@._V1_.jpg" alt="Scrooged">
-            <div class="movie-info">
-                <div class="movie-title">Scrooged</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.9</span>
-                    <span> • 1988</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0338348'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTM1NTU0NTE4MV5BMl5BanBnXkFtZTcwMTQ0MjEzMw@@._V1_.jpg" alt="The Polar Express">
-            <div class="movie-info">
-                <div class="movie-title">The Polar Express</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.6</span>
-                    <span> • 2004</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0111070'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTYwZWUxNmUtNzdmMS00MDBiLWFhN2EtNjBmYjM1ZWFiNDUzXkEyXkFqcGc@._V1_.jpg" alt="The Santa Clause">
-            <div class="movie-info">
-                <div class="movie-title">The Santa Clause</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.6</span>
-                    <span> • 1994</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt13622970'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZDUxNThhYTUtYjgxNy00MGQ4LTgzOTEtZjg1YTU5NTcwNThlXkEyXkFqcGc@._V1_.jpg" alt="Moana 2">
-            <div class="movie-info">
-                <div class="movie-title">Moana 2</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt29137778'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYjA2Y2IzMGQtMzY3Zi00YzI2LWIyOGUtMzkwYzVkYmU5ZWY5XkEyXkFqcGc@._V1_.jpg" alt="Homestead">
-            <div class="movie-info">
-                <div class="movie-title">Homestead</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.6</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8999762'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMWE5OGU0OWQtYjdiOC00NWNmLWI3ZTQtZGJlYmQ1ODEyODA1XkEyXkFqcGc@._V1_.jpg" alt="The Brutalist">
-            <div class="movie-info">
-                <div class="movie-title">The Brutalist</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.1</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14824600'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOTg4OTgyMDYtMDA0NC00ZjJhLWJiOGMtMjlkM2ZjNTgxNGI0XkEyXkFqcGc@._V1_.jpg" alt="The Lord of the Rings: The War of the Rohirrim">
-            <div class="movie-info">
-                <div class="movie-title">The Lord of the Rings: The War of the Rohirrim</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.5</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2709692'">
-            <img src="https://m.media-amazon.com/images/M/MV5BODQwOGFjNGEtMTg1ZS00MmY4LTg0NTctYjVlNTNjZjRmZTcxXkEyXkFqcGc@._V1_.jpg" alt="The Grinch">
-            <div class="movie-info">
-                <div class="movie-title">The Grinch</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.4</span>
-                    <span> • 2018</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14849194'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOWY3MjUzZTctOTI5ZC00MDA5LTk4ZTMtZWJjNjRmMzE4ZmI2XkEyXkFqcGc@._V1_.jpg" alt="The Holdovers">
-            <div class="movie-info">
-                <div class="movie-title">The Holdovers</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.9</span>
-                    <span> • 2023</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt24871974'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjdlNjNlODEtYjA1OS00MDgzLWJiNTMtMDVlMWMyOGM5ZDhkXkEyXkFqcGc@._V1_.jpg" alt="Subservience">
-            <div class="movie-info">
-                <div class="movie-title">Subservience</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.4</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt4729430'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZDA4ODhlMzctNGRmYi00NmViLTkxZGYtZjRkNGQ5YzYwYWVlXkEyXkFqcGc@._V1_.jpg" alt="Klaus">
-            <div class="movie-info">
-                <div class="movie-title">Klaus</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.2</span>
-                    <span> • 2019</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8695030'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMGQzMTFkM2UtZDhmOC00OGY4LWFjYzctMjljZDkzYTAxN2VmXkEyXkFqcGc@._V1_.jpg" alt="The Dead Don't Die">
-            <div class="movie-info">
-                <div class="movie-title">The Dead Don't Die</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.5</span>
-                    <span> • 2019</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14260836'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYWU3YzU0NTItMGVlYi00YTFmLWE5MmQtNjg4ODQ3ZWYyNjRkXkEyXkFqcGc@._V1_.jpg" alt="Better Man">
-            <div class="movie-info">
-                <div class="movie-title">Better Man</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt6263850'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZTk5ODY0MmQtMzA3Ni00NGY1LThiYzItZThiNjFiNDM4MTM3XkEyXkFqcGc@._V1_.jpg" alt="Deadpool & Wolverine">
-            <div class="movie-info">
-                <div class="movie-title">Deadpool & Wolverine</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.6</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt12810074'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNjI2NzNjMDAtMjI3NC00YzJhLWIyYTktNzZhMzg0MmRkNDM3XkEyXkFqcGc@._V1_.jpg" alt="Nightbitch">
-            <div class="movie-info">
-                <div class="movie-title">Nightbitch</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt15245268'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTI0MjVmMWUtYTRhZC00NTI0LWE1N2EtZWM3NDBmYmJlOGE4XkEyXkFqcGc@._V1_.jpg" alt="Young Hearts">
-            <div class="movie-info">
-                <div class="movie-title">Young Hearts</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.3</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0110527'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMzA2YjU3NjUtZDNiOS00ZjY2LThjOTYtYjQ1MGM4MTk4YzZjXkEyXkFqcGc@._V1_.jpg" alt="Miracle on 34th Street">
-            <div class="movie-info">
-                <div class="movie-title">Miracle on 34th Street</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.6</span>
-                    <span> • 1994</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt12584954'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNjM4MWEwMTEtNTcwYi00ZDI4LWEwMzUtNDMzODBhZmI5MWE1XkEyXkFqcGc@._V1_.jpg" alt="Twisters">
-            <div class="movie-info">
-                <div class="movie-title">Twisters</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.5</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0104940'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTIwOTAyMDgtNTY1Zi00ZWMyLWFjMjAtNjI5YWIyOTE2NDJhXkEyXkFqcGc@._V1_.jpg" alt="The Muppet Christmas Carol">
-            <div class="movie-info">
-                <div class="movie-title">The Muppet Christmas Carol</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.8</span>
-                    <span> • 1992</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2049403'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYmRlYzE3ZTYtNjIyZi00MWYyLWEzZDItOWI5NzM1Yjc0NmI5XkEyXkFqcGc@._V1_.jpg" alt="Beetlejuice Beetlejuice">
-            <div class="movie-info">
-                <div class="movie-title">Beetlejuice Beetlejuice</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt16366836'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_.jpg" alt="Venom: The Last Dance">
-            <div class="movie-info">
-                <div class="movie-title">Venom: The Last Dance</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0241527'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTU1MzgyMDMtMzBlZS00YzczLThmYWEtMjU3YmFlOWEyMjE1XkEyXkFqcGc@._V1_.jpg" alt="Harry Potter and the Sorcerer's Stone">
-            <div class="movie-info">
-                <div class="movie-title">Harry Potter and the Sorcerer's Stone</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.7</span>
-                    <span> • 2001</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27196021'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYzM2MmVkY2QtMTdmOS00YmNhLTg3NjktNmY1YTQ3ODQ0MTAxXkEyXkFqcGc@._V1_.jpg" alt="Small Things Like These">
-            <div class="movie-info">
-                <div class="movie-title">Small Things Like These</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.9</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt11315808'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTRlNmU1NzEtODNkNC00ZGM3LWFmNzQtMjBlMWRiYTcyMGRhXkEyXkFqcGc@._V1_.jpg" alt="Joker: Folie à Deux">
-            <div class="movie-info">
-                <div class="movie-title">Joker: Folie à Deux</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.2</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt33764258'">
-            <img src="/placeholder-image.jpg" alt="The Odyssey">
-            <div class="movie-info">
-                <div class="movie-title">The Odyssey</div>
-                <div class="movie-meta">
-                    <span>⭐ N/A</span>
-                    <span> • 2026</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt12003946'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZmE5ODNmODYtNDg0MC00ZDc4LWEyZmItNTQ2MGQ5MGQxMzllXkEyXkFqcGc@._V1_.jpg" alt="Violent Night">
-            <div class="movie-info">
-                <div class="movie-title">Violent Night</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2022</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0013442'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNDg1OTI1M2MtMTVlMS00ZjFhLTgyMTAtYjIzOWUwZTkyZWE5XkEyXkFqcGc@._V1_.jpg" alt="Nosferatu: A Symphony of Horror">
-            <div class="movie-info">
-                <div class="movie-title">Nosferatu: A Symphony of Horror</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.8</span>
-                    <span> • 1922</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0116705'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNDgzMjQ0YTctZGJhNy00ZjJjLTk5YWMtZmI2YTgwOTJmYWJkXkEyXkFqcGc@._V1_.jpg" alt="Jingle All the Way">
-            <div class="movie-info">
-                <div class="movie-title">Jingle All the Way</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.8</span>
-                    <span> • 1996</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0816692'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_.jpg" alt="Interstellar">
-            <div class="movie-info">
-                <div class="movie-title">Interstellar</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.7</span>
-                    <span> • 2014</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt31022050'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTU3ODJmZGItNGI1OS00MTQ4LWJkZGQtMDQ0YzMxOTNhMjlhXkEyXkFqcGc@._V1_.jpg" alt="Our Little Secret">
-            <div class="movie-info">
-                <div class="movie-title">Our Little Secret</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt32359447'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYjYzOTA0NWYtNzkxNi00YmY4LTljOTYtODdhYTc0ODI3MDViXkEyXkFqcGc@._V1_.jpg" alt="Hot Frosty">
-            <div class="movie-info">
-                <div class="movie-title">Hot Frosty</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.3</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27540542'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjEzN2ZjYjUtZTI3NC00MzMyLWJiNDAtMDBiZGEzNTBiY2RkXkEyXkFqcGc@._V1_.jpg" alt="Lucky Baskhar">
-            <div class="movie-info">
-                <div class="movie-title">Lucky Baskhar</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8623904'">
-            <img src="https://m.media-amazon.com/images/M/MV5BY2NlNTMwYzgtZjI2Ny00ZWExLWE2NDUtNzFlYTQyMmY1NjkwXkEyXkFqcGc@._V1_.jpg" alt="Last Christmas">
-            <div class="movie-info">
-                <div class="movie-title">Last Christmas</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.5</span>
-                    <span> • 2019</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27218960'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYTQxNWJmYTEtZTMzMS00MDk1LTlkMTgtYmRhOTRmMjdkOGRiXkEyXkFqcGc@._V1_.jpg" alt="Y2K">
-            <div class="movie-info">
-                <div class="movie-title">Y2K</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt15041836'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOTc3NDA5ODQtYjQzYS00NWE3LWE1YjYtNjAxNzlhOTE4NjAzXkEyXkFqcGc@._V1_.jpg" alt="Werewolves">
-            <div class="movie-info">
-                <div class="movie-title">Werewolves</div>
-                <div class="movie-meta">
-                    <span>⭐ 4.6</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0099423'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTA1OGFlZWUtZjE4Yy00MzFmLTlhYjctOGY5ZmZjOWFlOWUwXkEyXkFqcGc@._V1_.jpg" alt="Die Hard 2">
-            <div class="movie-info">
-                <div class="movie-title">Die Hard 2</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.1</span>
-                    <span> • 1990</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt15239678'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTc0YmQxMjEtODI5MC00NjFiLTlkMWUtOGQ5NjFmYWUyZGJhXkEyXkFqcGc@._V1_.jpg" alt="Dune: Part Two">
-            <div class="movie-info">
-                <div class="movie-title">Dune: Part Two</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.5</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt3890160'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_.jpg" alt="Baby Driver">
-            <div class="movie-info">
-                <div class="movie-title">Baby Driver</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.5</span>
-                    <span> • 2017</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt26446278'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTY4NTA3ZDYtMWVkYy00MGNkLTlmYzUtODQ5YjZlZTA3YjA5XkEyXkFqcGc@._V1_.jpg" alt="The Count of Monte-Cristo">
-            <div class="movie-info">
-                <div class="movie-title">The Count of Monte-Cristo</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.6</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt28510079'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZjk2YTIyZTItYTEzNi00YzFiLWIzMDYtNmNjODFiY2FiZGQ2XkEyXkFqcGc@._V1_.jpg" alt="Culpa Tuya">
-            <div class="movie-info">
-                <div class="movie-title">Culpa Tuya</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.3</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt10999120'">
-            <img src="https://m.media-amazon.com/images/M/MV5BY2E3MWRiMjYtMjM2Yi00ZDJiLTgwZDctMjk2ZWQ0NjQyYzliXkEyXkFqcGc@._V1_.jpg" alt="Spirited">
-            <div class="movie-info">
-                <div class="movie-title">Spirited</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.6</span>
-                    <span> • 2022</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt1067106'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTM1MTI5ODU4MV5BMl5BanBnXkFtZTcwNTYyNTU4Mg@@._V1_.jpg" alt="A Christmas Carol">
-            <div class="movie-info">
-                <div class="movie-title">A Christmas Carol</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.8</span>
-                    <span> • 2009</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt29268110'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYTg5OTMyMGMtYzMwNC00NDMyLWE0OGUtMTQ1ODcwM2FjOTM4XkEyXkFqcGc@._V1_.jpg" alt="Smile 2">
-            <div class="movie-info">
-                <div class="movie-title">Smile 2</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.8</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0039628'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZThmOTU4MzktNzg4Yy00NGRhLThlZjQtYjA1MjY2Zjg0N2RiXkEyXkFqcGc@._V1_.jpg" alt="Miracle on 34th Street">
-            <div class="movie-info">
-                <div class="movie-title">Miracle on 34th Street</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.9</span>
-                    <span> • 1947</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0087363'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYmMzMmIxNzYtYjk3OS00NjBiLTkxNDQtODU3ZDNjN2RiMTIxXkEyXkFqcGc@._V1_.jpg" alt="Gremlins">
-            <div class="movie-info">
-                <div class="movie-title">Gremlins</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.3</span>
-                    <span> • 1984</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt10548174'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNjgwYTI0YjctMWYzNS00MmI1LWI5YTctNmE1YjBkNDFlNWMxXkEyXkFqcGc@._V1_.jpg" alt="28 Years Later">
-            <div class="movie-info">
-                <div class="movie-title">28 Years Later</div>
-                <div class="movie-meta">
-                    <span>⭐ N/A</span>
-                    <span> • 2025</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt3850590'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjk0MjMzMTI3NV5BMl5BanBnXkFtZTgwODEyODkxNzE@._V1_.jpg" alt="Krampus">
-            <div class="movie-info">
-                <div class="movie-title">Krampus</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.2</span>
-                    <span> • 2015</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0304669'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNjU0Njk5MTA2Nl5BMl5BanBnXkFtZTYwODkzMzQ3._V1_.jpg" alt="The Santa Clause 2">
-            <div class="movie-info">
-                <div class="movie-title">The Santa Clause 2</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.7</span>
-                    <span> • 2002</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt30144381'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYTNhZmMzYWMtYzU4NC00OTViLWE1ZmEtMTUxZjU1Y2Q1NDA3XkEyXkFqcGc@._V1_.jpg" alt="Nutcrackers">
-            <div class="movie-info">
-                <div class="movie-title">Nutcrackers</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.5</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2347285'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMmZhOTNkYmEtMjRlNC00YzViLWFlNGMtNWFmN2FiODM5NmYzXkEyXkFqcGc@._V1_.jpg" alt="The Best Christmas Pageant Ever">
-            <div class="movie-info">
-                <div class="movie-title">The Best Christmas Pageant Ever</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.8</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0307987'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjA4Njg1MDcwN15BMl5BanBnXkFtZTYwMzAxNjM3._V1_.jpg" alt="Bad Santa">
-            <div class="movie-info">
-                <div class="movie-title">Bad Santa</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2003</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0388419'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTQxMDMxODEwNF5BMl5BanBnXkFtZTYwNzM4OTc2._V1_.jpg" alt="Christmas with the Kranks">
-            <div class="movie-info">
-                <div class="movie-title">Christmas with the Kranks</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.5</span>
-                    <span> • 2004</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0356680'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOWRjNzY1MmItNDUwNS00MGMzLWFkN2UtMTEzYjU4MmE2ZDAxXkEyXkFqcGc@._V1_.jpg" alt="The Family Stone">
-            <div class="movie-info">
-                <div class="movie-title">The Family Stone</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.3</span>
-                    <span> • 2005</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt29623480'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZjM2M2E3YzAtZDJjYy00MDhkLThiYmItOGZhNzQ3NTgyZmI0XkEyXkFqcGc@._V1_.jpg" alt="The Wild Robot">
-            <div class="movie-info">
-                <div class="movie-title">The Wild Robot</div>
-                <div class="movie-meta">
-                    <span>⭐ 8.2</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2990140'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNTA3NjU3OTM2MV5BMl5BanBnXkFtZTgwNjQ2MzE1NjM@._V1_.jpg" alt="The Christmas Chronicles">
-            <div class="movie-info">
-                <div class="movie-title">The Christmas Chronicles</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2018</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt19861162'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMDNlNzQ5NDAtYTdlZC00YTRiLTg0ZWUtMmY5NWYyNzdiYTYyXkEyXkFqcGc@._V1_.jpg" alt="The Return">
-            <div class="movie-info">
-                <div class="movie-title">The Return</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.3</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt17220704'">
-            <img src="https://m.media-amazon.com/images/M/MV5BZWU1Mjk2YmItM2E3Yi00OWYwLWIxMjItNGNkMGFiYmI0NDUxXkEyXkFqcGc@._V1_.jpg" alt="A Christmas Story Christmas">
-            <div class="movie-info">
-                <div class="movie-title">A Christmas Story Christmas</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2022</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt18412256'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMDU0NjcwOGQtNjNjOS00NzQ3LWIwM2YtYWVmODZjMzQzN2ExXkEyXkFqcGc@._V1_.jpg" alt="Alien: Romulus">
-            <div class="movie-info">
-                <div class="movie-title">Alien: Romulus</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.1</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0119303'">
-            <img src="https://m.media-amazon.com/images/M/MV5BNmI0MjcxYjYtYzY5Ni00NjBkLTllN2MtZGYyNzJiYzA5ZGYxXkEyXkFqcGc@._V1_.jpg" alt="Home Alone 3">
-            <div class="movie-info">
-                <div class="movie-title">Home Alone 3</div>
-                <div class="movie-meta">
-                    <span>⭐ 4.6</span>
-                    <span> • 1997</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0369436'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMTQ2MjA0NDAwNF5BMl5BanBnXkFtZTcwOTU4MTM5MQ@@._V1_.jpg" alt="Four Christmases">
-            <div class="movie-info">
-                <div class="movie-title">Four Christmases</div>
-                <div class="movie-meta">
-                    <span>⭐ 5.7</span>
-                    <span> • 2008</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27131358'">
-            <img src="https://m.media-amazon.com/images/M/MV5BYmQwNzRiNmItODc4Ny00Mjk4LThmYWQtNjI5OGU4OGUxMmY0XkEyXkFqcGc@._V1_.jpg" alt="We Live in Time">
-            <div class="movie-info">
-                <div class="movie-title">We Live in Time</div>
-                <div class="movie-meta">
-                    <span>⭐ 7.0</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt24325460'">
-            <img src="https://m.media-amazon.com/images/M/MV5BOGYzOTVlZDQtNDk4ZS00NjU5LWFiODUtZGMzMDUwZDFhYTQ0XkEyXkFqcGc@._V1_.jpg" alt="Squid Game: Season 2 Fan-Film">
-            <div class="movie-info">
-                <div class="movie-title">Squid Game: Season 2 Fan-Film</div>
-                <div class="movie-meta">
-                    <span>⭐ 4.6</span>
-                    <span> • 2022</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27534307'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMWI2OWFjNjgtOTQ2Zi00MjlmLTg2MGYtNmE4MjMyZjIzMDA0XkEyXkFqcGc@._V1_.jpg" alt="Speak No Evil">
-            <div class="movie-info">
-                <div class="movie-title">Speak No Evil</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.8</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt23468450'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMmJkNGNiNjgtMzFlYy00ZDI5LWI2YzktZGVjYjI5MjQyMGU3XkEyXkFqcGc@._V1_.jpg" alt="Longlegs">
-            <div class="movie-info">
-                <div class="movie-title">Longlegs</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.7</span>
-                    <span> • 2024</span>
-                </div>
-            </div>
-        </div>
-        <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt6105098'">
-            <img src="https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_.jpg" alt="The Lion King">
-            <div class="movie-info">
-                <div class="movie-title">The Lion King</div>
-                <div class="movie-meta">
-                    <span>⭐ 6.8</span>
-                    <span> • 2019</span>
-                </div>
-            </div>
-        </div>
-              </div>
-          </main>
+    .logo span {
+        color: var(--accent-color);
+    }
 
-             <script>
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                window.location.href = `/search/${encodeURIComponent(query)}`;
-            }
+   .search-bar-container {
+  display: flex;
+  align-items: center;
+  background: #333;
+  padding: 5px;
+  border-radius: 4px;
+  position: relative; /* Allows left positioning */
+  left: -40px; /* Adjust this value to move further left */
+}
+
+    .search-bar {
+        background: transparent;
+        border: none;
+        color: var(--text-color);
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        outline: none;
+            margin-right: 20px;
+    }
+
+    .search-bar::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-icon {
+        background: var(--accent-color);
+        padding: 5px 15px;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--text-color);
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .page-title {
+        text-align: center;
+        font-size: 2rem;
+        margin: 20px 0;
+        color: var(--text-color);
+        font-weight: bold;
+    }
+
+    .topMovies {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .movie-card {
+        background: var(--card-bg);
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transition: transform 0.2s ease, opacity 0.3s;
+        cursor: pointer;
+    }
+
+    .movie-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .movie-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .movie-info {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .movie-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--text-color);
+        margin-bottom: 5px;
+    }
+
+    .movie-meta {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    @media (min-width: 600px) {
+        .topMovies {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         }
 
-        document.getElementById('searchInput').addEventListener('keypress', function (event) {
-            if (event.key === 'Enter') {
-                performSearch();
-            }
-        });
-    </script>
-      </body>
-      </html>
-    
+        .movie-title {
+            font-size: 16px;
+        }
+
+        .movie-meta {
+            font-size: 14px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Yes<span>Movies</span></a>
+        <div class="search-bar-container">
+            <input id="searchInput" type="text" class="search-bar" placeholder="Search Movies & Shows">
+            <div class="search-icon" onclick="performSearch()">Search</div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+      <h1 class="page-title">Top IMDB Movies</h1>
+      <div class="topMovies">
+
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt5040012'">
+      <img src="https://m.media-amazon.com/images/M/MV5BY2FhZGE3NmEtNWJjOC00NDI1LWFhMTQtMjcxNmQzZmEwNGIzXkEyXkFqcGc@._V1_.jpg" alt="Nosferatu">
+      <div class="movie-info">
+          <div class="movie-title">Nosferatu</div>
+          <div class="movie-meta">
+              <span>⭐ 7.8</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14948432'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZmFkMjE4NjQtZTVmZS00MDZjLWE2ZmEtZTkzODljNjhlNWUxXkEyXkFqcGc@._V1_.jpg" alt="Red One">
+      <div class="movie-info">
+          <div class="movie-title">Red One</div>
+          <div class="movie-meta">
+              <span>⭐ 6.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt21382296'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTNkMjQzNmQtNzE4ZC00NDlmLTkyYjAtZDZkYTQ5NjBmYThlXkEyXkFqcGc@._V1_.jpg" alt="Carry-On">
+      <div class="movie-info">
+          <div class="movie-title">Carry-On</div>
+          <div class="movie-meta">
+              <span>⭐ 6.5</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt5950044'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZjFhZmU5NzUtZTg4Zi00ZjRjLWI0YmQtODk2MzI4YjNhYTdkXkEyXkFqcGc@._V1_.jpg" alt="Superman">
+      <div class="movie-info">
+          <div class="movie-title">Superman</div>
+          <div class="movie-meta">
+              <span>⭐ N/A</span>
+              <span> • 2025</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt16539454'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_.jpg" alt="Pushpa: The Rule - Part 2">
+      <div class="movie-info">
+          <div class="movie-title">Pushpa: The Rule - Part 2</div>
+          <div class="movie-meta">
+              <span>⭐ 6.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt18259086'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjZjNjE5NDEtOWJjYS00Mjk2LWI1ZDYtOWI1ZWI3MzRjM2UzXkEyXkFqcGc@._V1_.jpg" alt="Sonic the Hedgehog 3">
+      <div class="movie-info">
+          <div class="movie-title">Sonic the Hedgehog 3</div>
+          <div class="movie-meta">
+              <span>⭐ 7.3</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt13186482'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYjBkOWUwODYtYWI3YS00N2I0LWEyYTktOTJjM2YzOTc3ZDNlXkEyXkFqcGc@._V1_.jpg" alt="Mufasa: The Lion King">
+      <div class="movie-info">
+          <div class="movie-title">Mufasa: The Lion King</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0314331'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYWRlZjcwYTgtYWJkOS00MGYwLTk3Y2ItNmU4NTg5Nzg2YTQ2XkEyXkFqcGc@._V1_.jpg" alt="Love Actually">
+      <div class="movie-info">
+          <div class="movie-title">Love Actually</div>
+          <div class="movie-meta">
+              <span>⭐ 7.6</span>
+              <span> • 2003</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt9218128'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMWYzZTM5ZGQtOGE5My00NmM2LWFlMDEtMGNjYjdmOWM1MzA1XkEyXkFqcGc@._V1_.jpg" alt="Gladiator II">
+      <div class="movie-info">
+          <div class="movie-title">Gladiator II</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0097958'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDgxYzI2YWItNmUyNS00ZWE4LWEzZDctYTk1M2VkYjhkOWVmXkEyXkFqcGc@._V1_.jpg" alt="National Lampoon's Christmas Vacation">
+      <div class="movie-info">
+          <div class="movie-title">National Lampoon's Christmas Vacation</div>
+          <div class="movie-meta">
+              <span>⭐ 7.5</span>
+              <span> • 1989</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27403986'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjM4YjA1NTItOWI3Ni00MzAwLThmMjMtNmM2MWY2Y2ZmOGIzXkEyXkFqcGc@._V1_.jpg" alt="Juror #2">
+      <div class="movie-info">
+          <div class="movie-title">Juror #2</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt24458622'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDdhYTY4ZTEtZTlhZS00ZWI1LWFjYzQtMWRkMjIzN2E5NjBjXkEyXkFqcGc@._V1_.jpg" alt="The Six Triple Eight">
+      <div class="movie-info">
+          <div class="movie-title">The Six Triple Eight</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0099785'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNzNmNmQ2ZDEtMTc1MS00NjNiLThlMGUtZmQxNTg1Nzg5NWMzXkEyXkFqcGc@._V1_.jpg" alt="Home Alone">
+      <div class="movie-info">
+          <div class="movie-title">Home Alone</div>
+          <div class="movie-meta">
+              <span>⭐ 7.7</span>
+              <span> • 1990</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0095016'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMGNlYmM1NmQtYWExMS00NmRjLTg5ZmEtMmYyYzJkMzljYWMxXkEyXkFqcGc@._V1_.jpg" alt="Die Hard">
+      <div class="movie-info">
+          <div class="movie-title">Die Hard</div>
+          <div class="movie-meta">
+              <span>⭐ 8.2</span>
+              <span> • 1988</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt11563598'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYTA2NTA5NDYtMzlkOC00MTQxLWI0NDQtMzk2M2YzMGE4MTkxXkEyXkFqcGc@._V1_.jpg" alt="A Complete Unknown">
+      <div class="movie-info">
+          <div class="movie-title">A Complete Unknown</div>
+          <div class="movie-meta">
+              <span>⭐ 7.8</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0038650'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMDM4OWFhYjEtNTE5Yy00NjcyLTg5N2UtZDQwNDZlYjlmNDU5XkEyXkFqcGc@._V1_.jpg" alt="It's a Wonderful Life">
+      <div class="movie-info">
+          <div class="movie-title">It's a Wonderful Life</div>
+          <div class="movie-meta">
+              <span>⭐ 8.6</span>
+              <span> • 1946</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt1262426'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOWMwYjYzYmMtMWQ2Ni00NWUwLTg2MzAtYzkzMDBiZDIwOTMwXkEyXkFqcGc@._V1_.jpg" alt="Wicked">
+      <div class="movie-info">
+          <div class="movie-title">Wicked</div>
+          <div class="movie-meta">
+              <span>⭐ 7.9</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt30057084'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMmUwODYwODAtYWZkZS00YmUwLWFmMWEtOGNjMjE2NDk3OWIwXkEyXkFqcGc@._V1_.jpg" alt="Babygirl">
+      <div class="movie-info">
+          <div class="movie-title">Babygirl</div>
+          <div class="movie-meta">
+              <span>⭐ 6.6</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt10655524'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYzM2NGMzNGQtZjNhMi00MTVkLTg2ZGQtN2M4OTllYzU1Y2Y0XkEyXkFqcGc@._V1_.jpg" alt="It Ends with Us">
+      <div class="movie-info">
+          <div class="movie-title">It Ends with Us</div>
+          <div class="movie-meta">
+              <span>⭐ 6.5</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt28607951'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYThiN2M0NTItODRmNC00NDhlLWFiYTgtMWM2YTEyYzI3ZTY1XkEyXkFqcGc@._V1_.jpg" alt="Anora">
+      <div class="movie-info">
+          <div class="movie-title">Anora</div>
+          <div class="movie-meta">
+              <span>⭐ 7.9</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0170016'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDAwMjFhYTEtNzYyMS00YmY2LTg3MGEtZTRkNWNiMDI4MDRkXkEyXkFqcGc@._V1_.jpg" alt="How the Grinch Stole Christmas">
+      <div class="movie-info">
+          <div class="movie-title">How the Grinch Stole Christmas</div>
+          <div class="movie-meta">
+              <span>⭐ 6.4</span>
+              <span> • 2000</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8790086'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDU0YTI5ODAtN2NmMS00YTg3LTgyNDItN2RmOWEzOTkzZjcyXkEyXkFqcGc@._V1_.jpg" alt="Kraven: The Hunter">
+      <div class="movie-info">
+          <div class="movie-title">Kraven: The Hunter</div>
+          <div class="movie-meta">
+              <span>⭐ 5.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0085334'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZWZhYzI1YjktYzJjYy00NjIwLWE0MGItNWM4YWM2ZjFkNGM0XkEyXkFqcGc@._V1_.jpg" alt="A Christmas Story">
+      <div class="movie-info">
+          <div class="movie-title">A Christmas Story</div>
+          <div class="movie-meta">
+              <span>⭐ 7.9</span>
+              <span> • 1983</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0319343'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDQ0ZWE2NzgtNGNhMC00MDIwLWI1MjUtYjYxZGRiM2UyYTQzXkEyXkFqcGc@._V1_.jpg" alt="Elf">
+      <div class="movie-info">
+          <div class="movie-title">Elf</div>
+          <div class="movie-meta">
+              <span>⭐ 7.1</span>
+              <span> • 2003</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt17526714'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDQ1NGE5MGMtYzdlZC00ODExLWJlMDMtNWU4NjA5OWYwMDEwXkEyXkFqcGc@._V1_.jpg" alt="The Substance">
+      <div class="movie-info">
+          <div class="movie-title">The Substance</div>
+          <div class="movie-meta">
+              <span>⭐ 7.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2396431'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMDNjMzcxNTEtODRjYi00MGQ4LWE3YjAtNjllYzE1OThmZmRhXkEyXkFqcGc@._V1_.jpg" alt="Dear Santa">
+      <div class="movie-info">
+          <div class="movie-title">Dear Santa</div>
+          <div class="movie-meta">
+              <span>⭐ 5.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0047673'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYzZlOTBmZDgtMWIwMS00YTNlLTllNWYtZTk1MmY0ZWU3MzQzXkEyXkFqcGc@._V1_.jpg" alt="White Christmas">
+      <div class="movie-info">
+          <div class="movie-title">White Christmas</div>
+          <div class="movie-meta">
+              <span>⭐ 7.5</span>
+              <span> • 1954</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0104431'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOGEyYzRmNzYtYzJjZi00ZjhlLWJiNDktYzZhNTgxMzc1NThlXkEyXkFqcGc@._V1_.jpg" alt="Home Alone 2: Lost in New York">
+      <div class="movie-info">
+          <div class="movie-title">Home Alone 2: Lost in New York</div>
+          <div class="movie-meta">
+              <span>⭐ 6.9</span>
+              <span> • 1992</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt28015403'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMzFiMWM4YjAtY2Y3Yi00MDIzLTk0N2MtYTAwNGM3ZmMwODhlXkEyXkFqcGc@._V1_.jpg" alt="Heretic">
+      <div class="movie-info">
+          <div class="movie-title">Heretic</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt17163970'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTk3M2YwMGUtZDJiZS00MDNkLWIyZDEtY2VjMWYyZDFmZjMzXkEyXkFqcGc@._V1_.jpg" alt="Wallace & Gromit: Vengeance Most Fowl">
+      <div class="movie-info">
+          <div class="movie-title">Wallace & Gromit: Vengeance Most Fowl</div>
+          <div class="movie-meta">
+              <span>⭐ 7.9</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt20215234'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYjgxMDI5NmMtNTU3OS00ZDQxLTgxZmEtNzY1ZTBmMDY4NDRkXkEyXkFqcGc@._V1_.jpg" alt="Conclave">
+      <div class="movie-info">
+          <div class="movie-title">Conclave</div>
+          <div class="movie-meta">
+              <span>⭐ 7.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt26625693'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZWIxOGQyYjYtOGEwOC00YWNjLWJmNTktZjJlM2RmNTdjMmVlXkEyXkFqcGc@._V1_.jpg" alt="The Order">
+      <div class="movie-info">
+          <div class="movie-title">The Order</div>
+          <div class="movie-meta">
+              <span>⭐ 6.9</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0457939'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZmEwNDg0M2QtMDdiNy00YTliLTk4ZjctOThjZjczODVmMTdkXkEyXkFqcGc@._V1_.jpg" alt="The Holiday">
+      <div class="movie-info">
+          <div class="movie-title">The Holiday</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2006</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0172495'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYWQ4YmNjYjEtOWE1Zi00Y2U4LWI4NTAtMTU0MjkxNWQ1ZmJiXkEyXkFqcGc@._V1_.jpg" alt="Gladiator">
+      <div class="movie-info">
+          <div class="movie-title">Gladiator</div>
+          <div class="movie-meta">
+              <span>⭐ 8.5</span>
+              <span> • 2000</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14855468'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZWRkZjQwNDctOWY2Yy00ZTczLTg2ZTMtMDBlYTVhNGE1OGYzXkEyXkFqcGc@._V1_.jpg" alt="That Christmas">
+      <div class="movie-info">
+          <div class="movie-title">That Christmas</div>
+          <div class="movie-meta">
+              <span>⭐ 6.8</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0096061'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYWY3ODUyZTQtMTQyZS00ZWIyLTk3M2YtYzU5ZWQ3MTEwZGU1XkEyXkFqcGc@._V1_.jpg" alt="Scrooged">
+      <div class="movie-info">
+          <div class="movie-title">Scrooged</div>
+          <div class="movie-meta">
+              <span>⭐ 6.9</span>
+              <span> • 1988</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0338348'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTM1NTU0NTE4MV5BMl5BanBnXkFtZTcwMTQ0MjEzMw@@._V1_.jpg" alt="The Polar Express">
+      <div class="movie-info">
+          <div class="movie-title">The Polar Express</div>
+          <div class="movie-meta">
+              <span>⭐ 6.6</span>
+              <span> • 2004</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0111070'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTYwZWUxNmUtNzdmMS00MDBiLWFhN2EtNjBmYjM1ZWFiNDUzXkEyXkFqcGc@._V1_.jpg" alt="The Santa Clause">
+      <div class="movie-info">
+          <div class="movie-title">The Santa Clause</div>
+          <div class="movie-meta">
+              <span>⭐ 6.6</span>
+              <span> • 1994</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt13622970'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDUxNThhYTUtYjgxNy00MGQ4LTgzOTEtZjg1YTU5NTcwNThlXkEyXkFqcGc@._V1_.jpg" alt="Moana 2">
+      <div class="movie-info">
+          <div class="movie-title">Moana 2</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt29137778'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYjA2Y2IzMGQtMzY3Zi00YzI2LWIyOGUtMzkwYzVkYmU5ZWY5XkEyXkFqcGc@._V1_.jpg" alt="Homestead">
+      <div class="movie-info">
+          <div class="movie-title">Homestead</div>
+          <div class="movie-meta">
+              <span>⭐ 5.6</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8999762'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMWE5OGU0OWQtYjdiOC00NWNmLWI3ZTQtZGJlYmQ1ODEyODA1XkEyXkFqcGc@._V1_.jpg" alt="The Brutalist">
+      <div class="movie-info">
+          <div class="movie-title">The Brutalist</div>
+          <div class="movie-meta">
+              <span>⭐ 8.1</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14824600'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOTg4OTgyMDYtMDA0NC00ZjJhLWJiOGMtMjlkM2ZjNTgxNGI0XkEyXkFqcGc@._V1_.jpg" alt="The Lord of the Rings: The War of the Rohirrim">
+      <div class="movie-info">
+          <div class="movie-title">The Lord of the Rings: The War of the Rohirrim</div>
+          <div class="movie-meta">
+              <span>⭐ 6.5</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2709692'">
+      <img src="https://m.media-amazon.com/images/M/MV5BODQwOGFjNGEtMTg1ZS00MmY4LTg0NTctYjVlNTNjZjRmZTcxXkEyXkFqcGc@._V1_.jpg" alt="The Grinch">
+      <div class="movie-info">
+          <div class="movie-title">The Grinch</div>
+          <div class="movie-meta">
+              <span>⭐ 6.4</span>
+              <span> • 2018</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14849194'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOWY3MjUzZTctOTI5ZC00MDA5LTk4ZTMtZWJjNjRmMzE4ZmI2XkEyXkFqcGc@._V1_.jpg" alt="The Holdovers">
+      <div class="movie-info">
+          <div class="movie-title">The Holdovers</div>
+          <div class="movie-meta">
+              <span>⭐ 7.9</span>
+              <span> • 2023</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt24871974'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjdlNjNlODEtYjA1OS00MDgzLWJiNTMtMDVlMWMyOGM5ZDhkXkEyXkFqcGc@._V1_.jpg" alt="Subservience">
+      <div class="movie-info">
+          <div class="movie-title">Subservience</div>
+          <div class="movie-meta">
+              <span>⭐ 5.4</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt4729430'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDA4ODhlMzctNGRmYi00NmViLTkxZGYtZjRkNGQ5YzYwYWVlXkEyXkFqcGc@._V1_.jpg" alt="Klaus">
+      <div class="movie-info">
+          <div class="movie-title">Klaus</div>
+          <div class="movie-meta">
+              <span>⭐ 8.2</span>
+              <span> • 2019</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8695030'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMGQzMTFkM2UtZDhmOC00OGY4LWFjYzctMjljZDkzYTAxN2VmXkEyXkFqcGc@._V1_.jpg" alt="The Dead Don't Die">
+      <div class="movie-info">
+          <div class="movie-title">The Dead Don't Die</div>
+          <div class="movie-meta">
+              <span>⭐ 5.5</span>
+              <span> • 2019</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt14260836'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYWU3YzU0NTItMGVlYi00YTFmLWE5MmQtNjg4ODQ3ZWYyNjRkXkEyXkFqcGc@._V1_.jpg" alt="Better Man">
+      <div class="movie-info">
+          <div class="movie-title">Better Man</div>
+          <div class="movie-meta">
+              <span>⭐ 7.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt6263850'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZTk5ODY0MmQtMzA3Ni00NGY1LThiYzItZThiNjFiNDM4MTM3XkEyXkFqcGc@._V1_.jpg" alt="Deadpool & Wolverine">
+      <div class="movie-info">
+          <div class="movie-title">Deadpool & Wolverine</div>
+          <div class="movie-meta">
+              <span>⭐ 7.6</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt12810074'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNjI2NzNjMDAtMjI3NC00YzJhLWIyYTktNzZhMzg0MmRkNDM3XkEyXkFqcGc@._V1_.jpg" alt="Nightbitch">
+      <div class="movie-info">
+          <div class="movie-title">Nightbitch</div>
+          <div class="movie-meta">
+              <span>⭐ 5.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt15245268'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTI0MjVmMWUtYTRhZC00NTI0LWE1N2EtZWM3NDBmYmJlOGE4XkEyXkFqcGc@._V1_.jpg" alt="Young Hearts">
+      <div class="movie-info">
+          <div class="movie-title">Young Hearts</div>
+          <div class="movie-meta">
+              <span>⭐ 8.3</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0110527'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMzA2YjU3NjUtZDNiOS00ZjY2LThjOTYtYjQ1MGM4MTk4YzZjXkEyXkFqcGc@._V1_.jpg" alt="Miracle on 34th Street">
+      <div class="movie-info">
+          <div class="movie-title">Miracle on 34th Street</div>
+          <div class="movie-meta">
+              <span>⭐ 6.6</span>
+              <span> • 1994</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt12584954'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNjM4MWEwMTEtNTcwYi00ZDI4LWEwMzUtNDMzODBhZmI5MWE1XkEyXkFqcGc@._V1_.jpg" alt="Twisters">
+      <div class="movie-info">
+          <div class="movie-title">Twisters</div>
+          <div class="movie-meta">
+              <span>⭐ 6.5</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0104940'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTIwOTAyMDgtNTY1Zi00ZWMyLWFjMjAtNjI5YWIyOTE2NDJhXkEyXkFqcGc@._V1_.jpg" alt="The Muppet Christmas Carol">
+      <div class="movie-info">
+          <div class="movie-title">The Muppet Christmas Carol</div>
+          <div class="movie-meta">
+              <span>⭐ 7.8</span>
+              <span> • 1992</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2049403'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYmRlYzE3ZTYtNjIyZi00MWYyLWEzZDItOWI5NzM1Yjc0NmI5XkEyXkFqcGc@._V1_.jpg" alt="Beetlejuice Beetlejuice">
+      <div class="movie-info">
+          <div class="movie-title">Beetlejuice Beetlejuice</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt16366836'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_.jpg" alt="Venom: The Last Dance">
+      <div class="movie-info">
+          <div class="movie-title">Venom: The Last Dance</div>
+          <div class="movie-meta">
+              <span>⭐ 6.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0241527'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTU1MzgyMDMtMzBlZS00YzczLThmYWEtMjU3YmFlOWEyMjE1XkEyXkFqcGc@._V1_.jpg" alt="Harry Potter and the Sorcerer's Stone">
+      <div class="movie-info">
+          <div class="movie-title">Harry Potter and the Sorcerer's Stone</div>
+          <div class="movie-meta">
+              <span>⭐ 7.7</span>
+              <span> • 2001</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27196021'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYzM2MmVkY2QtMTdmOS00YmNhLTg3NjktNmY1YTQ3ODQ0MTAxXkEyXkFqcGc@._V1_.jpg" alt="Small Things Like These">
+      <div class="movie-info">
+          <div class="movie-title">Small Things Like These</div>
+          <div class="movie-meta">
+              <span>⭐ 6.9</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt11315808'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTRlNmU1NzEtODNkNC00ZGM3LWFmNzQtMjBlMWRiYTcyMGRhXkEyXkFqcGc@._V1_.jpg" alt="Joker: Folie à Deux">
+      <div class="movie-info">
+          <div class="movie-title">Joker: Folie à Deux</div>
+          <div class="movie-meta">
+              <span>⭐ 5.2</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt33764258'">
+      <img src="/placeholder-image.jpg" alt="The Odyssey">
+      <div class="movie-info">
+          <div class="movie-title">The Odyssey</div>
+          <div class="movie-meta">
+              <span>⭐ N/A</span>
+              <span> • 2026</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt12003946'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZmE5ODNmODYtNDg0MC00ZDc4LWEyZmItNTQ2MGQ5MGQxMzllXkEyXkFqcGc@._V1_.jpg" alt="Violent Night">
+      <div class="movie-info">
+          <div class="movie-title">Violent Night</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2022</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0013442'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDg1OTI1M2MtMTVlMS00ZjFhLTgyMTAtYjIzOWUwZTkyZWE5XkEyXkFqcGc@._V1_.jpg" alt="Nosferatu: A Symphony of Horror">
+      <div class="movie-info">
+          <div class="movie-title">Nosferatu: A Symphony of Horror</div>
+          <div class="movie-meta">
+              <span>⭐ 7.8</span>
+              <span> • 1922</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0116705'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNDgzMjQ0YTctZGJhNy00ZjJjLTk5YWMtZmI2YTgwOTJmYWJkXkEyXkFqcGc@._V1_.jpg" alt="Jingle All the Way">
+      <div class="movie-info">
+          <div class="movie-title">Jingle All the Way</div>
+          <div class="movie-meta">
+              <span>⭐ 5.8</span>
+              <span> • 1996</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0816692'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_.jpg" alt="Interstellar">
+      <div class="movie-info">
+          <div class="movie-title">Interstellar</div>
+          <div class="movie-meta">
+              <span>⭐ 8.7</span>
+              <span> • 2014</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt31022050'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTU3ODJmZGItNGI1OS00MTQ4LWJkZGQtMDQ0YzMxOTNhMjlhXkEyXkFqcGc@._V1_.jpg" alt="Our Little Secret">
+      <div class="movie-info">
+          <div class="movie-title">Our Little Secret</div>
+          <div class="movie-meta">
+              <span>⭐ 5.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt32359447'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYjYzOTA0NWYtNzkxNi00YmY4LTljOTYtODdhYTc0ODI3MDViXkEyXkFqcGc@._V1_.jpg" alt="Hot Frosty">
+      <div class="movie-info">
+          <div class="movie-title">Hot Frosty</div>
+          <div class="movie-meta">
+              <span>⭐ 5.3</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27540542'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjEzN2ZjYjUtZTI3NC00MzMyLWJiNDAtMDBiZGEzNTBiY2RkXkEyXkFqcGc@._V1_.jpg" alt="Lucky Baskhar">
+      <div class="movie-info">
+          <div class="movie-title">Lucky Baskhar</div>
+          <div class="movie-meta">
+              <span>⭐ 8.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt8623904'">
+      <img src="https://m.media-amazon.com/images/M/MV5BY2NlNTMwYzgtZjI2Ny00ZWExLWE2NDUtNzFlYTQyMmY1NjkwXkEyXkFqcGc@._V1_.jpg" alt="Last Christmas">
+      <div class="movie-info">
+          <div class="movie-title">Last Christmas</div>
+          <div class="movie-meta">
+              <span>⭐ 6.5</span>
+              <span> • 2019</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27218960'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYTQxNWJmYTEtZTMzMS00MDk1LTlkMTgtYmRhOTRmMjdkOGRiXkEyXkFqcGc@._V1_.jpg" alt="Y2K">
+      <div class="movie-info">
+          <div class="movie-title">Y2K</div>
+          <div class="movie-meta">
+              <span>⭐ 5.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt15041836'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOTc3NDA5ODQtYjQzYS00NWE3LWE1YjYtNjAxNzlhOTE4NjAzXkEyXkFqcGc@._V1_.jpg" alt="Werewolves">
+      <div class="movie-info">
+          <div class="movie-title">Werewolves</div>
+          <div class="movie-meta">
+              <span>⭐ 4.6</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0099423'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTA1OGFlZWUtZjE4Yy00MzFmLTlhYjctOGY5ZmZjOWFlOWUwXkEyXkFqcGc@._V1_.jpg" alt="Die Hard 2">
+      <div class="movie-info">
+          <div class="movie-title">Die Hard 2</div>
+          <div class="movie-meta">
+              <span>⭐ 7.1</span>
+              <span> • 1990</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt15239678'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTc0YmQxMjEtODI5MC00NjFiLTlkMWUtOGQ5NjFmYWUyZGJhXkEyXkFqcGc@._V1_.jpg" alt="Dune: Part Two">
+      <div class="movie-info">
+          <div class="movie-title">Dune: Part Two</div>
+          <div class="movie-meta">
+              <span>⭐ 8.5</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt3890160'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_.jpg" alt="Baby Driver">
+      <div class="movie-info">
+          <div class="movie-title">Baby Driver</div>
+          <div class="movie-meta">
+              <span>⭐ 7.5</span>
+              <span> • 2017</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt26446278'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTY4NTA3ZDYtMWVkYy00MGNkLTlmYzUtODQ5YjZlZTA3YjA5XkEyXkFqcGc@._V1_.jpg" alt="The Count of Monte-Cristo">
+      <div class="movie-info">
+          <div class="movie-title">The Count of Monte-Cristo</div>
+          <div class="movie-meta">
+              <span>⭐ 7.6</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt28510079'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZjk2YTIyZTItYTEzNi00YzFiLWIzMDYtNmNjODFiY2FiZGQ2XkEyXkFqcGc@._V1_.jpg" alt="Culpa Tuya">
+      <div class="movie-info">
+          <div class="movie-title">Culpa Tuya</div>
+          <div class="movie-meta">
+              <span>⭐ 5.3</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt10999120'">
+      <img src="https://m.media-amazon.com/images/M/MV5BY2E3MWRiMjYtMjM2Yi00ZDJiLTgwZDctMjk2ZWQ0NjQyYzliXkEyXkFqcGc@._V1_.jpg" alt="Spirited">
+      <div class="movie-info">
+          <div class="movie-title">Spirited</div>
+          <div class="movie-meta">
+              <span>⭐ 6.6</span>
+              <span> • 2022</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt1067106'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTM1MTI5ODU4MV5BMl5BanBnXkFtZTcwNTYyNTU4Mg@@._V1_.jpg" alt="A Christmas Carol">
+      <div class="movie-info">
+          <div class="movie-title">A Christmas Carol</div>
+          <div class="movie-meta">
+              <span>⭐ 6.8</span>
+              <span> • 2009</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt29268110'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYTg5OTMyMGMtYzMwNC00NDMyLWE0OGUtMTQ1ODcwM2FjOTM4XkEyXkFqcGc@._V1_.jpg" alt="Smile 2">
+      <div class="movie-info">
+          <div class="movie-title">Smile 2</div>
+          <div class="movie-meta">
+              <span>⭐ 6.8</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0039628'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZThmOTU4MzktNzg4Yy00NGRhLThlZjQtYjA1MjY2Zjg0N2RiXkEyXkFqcGc@._V1_.jpg" alt="Miracle on 34th Street">
+      <div class="movie-info">
+          <div class="movie-title">Miracle on 34th Street</div>
+          <div class="movie-meta">
+              <span>⭐ 7.9</span>
+              <span> • 1947</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0087363'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYmMzMmIxNzYtYjk3OS00NjBiLTkxNDQtODU3ZDNjN2RiMTIxXkEyXkFqcGc@._V1_.jpg" alt="Gremlins">
+      <div class="movie-info">
+          <div class="movie-title">Gremlins</div>
+          <div class="movie-meta">
+              <span>⭐ 7.3</span>
+              <span> • 1984</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt10548174'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNjgwYTI0YjctMWYzNS00MmI1LWI5YTctNmE1YjBkNDFlNWMxXkEyXkFqcGc@._V1_.jpg" alt="28 Years Later">
+      <div class="movie-info">
+          <div class="movie-title">28 Years Later</div>
+          <div class="movie-meta">
+              <span>⭐ N/A</span>
+              <span> • 2025</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt3850590'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjk0MjMzMTI3NV5BMl5BanBnXkFtZTgwODEyODkxNzE@._V1_.jpg" alt="Krampus">
+      <div class="movie-info">
+          <div class="movie-title">Krampus</div>
+          <div class="movie-meta">
+              <span>⭐ 6.2</span>
+              <span> • 2015</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0304669'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNjU0Njk5MTA2Nl5BMl5BanBnXkFtZTYwODkzMzQ3._V1_.jpg" alt="The Santa Clause 2">
+      <div class="movie-info">
+          <div class="movie-title">The Santa Clause 2</div>
+          <div class="movie-meta">
+              <span>⭐ 5.7</span>
+              <span> • 2002</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt30144381'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYTNhZmMzYWMtYzU4NC00OTViLWE1ZmEtMTUxZjU1Y2Q1NDA3XkEyXkFqcGc@._V1_.jpg" alt="Nutcrackers">
+      <div class="movie-info">
+          <div class="movie-title">Nutcrackers</div>
+          <div class="movie-meta">
+              <span>⭐ 5.5</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2347285'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMmZhOTNkYmEtMjRlNC00YzViLWFlNGMtNWFmN2FiODM5NmYzXkEyXkFqcGc@._V1_.jpg" alt="The Best Christmas Pageant Ever">
+      <div class="movie-info">
+          <div class="movie-title">The Best Christmas Pageant Ever</div>
+          <div class="movie-meta">
+              <span>⭐ 6.8</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0307987'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjA4Njg1MDcwN15BMl5BanBnXkFtZTYwMzAxNjM3._V1_.jpg" alt="Bad Santa">
+      <div class="movie-info">
+          <div class="movie-title">Bad Santa</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2003</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0388419'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTQxMDMxODEwNF5BMl5BanBnXkFtZTYwNzM4OTc2._V1_.jpg" alt="Christmas with the Kranks">
+      <div class="movie-info">
+          <div class="movie-title">Christmas with the Kranks</div>
+          <div class="movie-meta">
+              <span>⭐ 5.5</span>
+              <span> • 2004</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0356680'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOWRjNzY1MmItNDUwNS00MGMzLWFkN2UtMTEzYjU4MmE2ZDAxXkEyXkFqcGc@._V1_.jpg" alt="The Family Stone">
+      <div class="movie-info">
+          <div class="movie-title">The Family Stone</div>
+          <div class="movie-meta">
+              <span>⭐ 6.3</span>
+              <span> • 2005</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt29623480'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZjM2M2E3YzAtZDJjYy00MDhkLThiYmItOGZhNzQ3NTgyZmI0XkEyXkFqcGc@._V1_.jpg" alt="The Wild Robot">
+      <div class="movie-info">
+          <div class="movie-title">The Wild Robot</div>
+          <div class="movie-meta">
+              <span>⭐ 8.2</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt2990140'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNTA3NjU3OTM2MV5BMl5BanBnXkFtZTgwNjQ2MzE1NjM@._V1_.jpg" alt="The Christmas Chronicles">
+      <div class="movie-info">
+          <div class="movie-title">The Christmas Chronicles</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2018</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt19861162'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMDNlNzQ5NDAtYTdlZC00YTRiLTg0ZWUtMmY5NWYyNzdiYTYyXkEyXkFqcGc@._V1_.jpg" alt="The Return">
+      <div class="movie-info">
+          <div class="movie-title">The Return</div>
+          <div class="movie-meta">
+              <span>⭐ 6.3</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt17220704'">
+      <img src="https://m.media-amazon.com/images/M/MV5BZWU1Mjk2YmItM2E3Yi00OWYwLWIxMjItNGNkMGFiYmI0NDUxXkEyXkFqcGc@._V1_.jpg" alt="A Christmas Story Christmas">
+      <div class="movie-info">
+          <div class="movie-title">A Christmas Story Christmas</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2022</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt18412256'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMDU0NjcwOGQtNjNjOS00NzQ3LWIwM2YtYWVmODZjMzQzN2ExXkEyXkFqcGc@._V1_.jpg" alt="Alien: Romulus">
+      <div class="movie-info">
+          <div class="movie-title">Alien: Romulus</div>
+          <div class="movie-meta">
+              <span>⭐ 7.1</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0119303'">
+      <img src="https://m.media-amazon.com/images/M/MV5BNmI0MjcxYjYtYzY5Ni00NjBkLTllN2MtZGYyNzJiYzA5ZGYxXkEyXkFqcGc@._V1_.jpg" alt="Home Alone 3">
+      <div class="movie-info">
+          <div class="movie-title">Home Alone 3</div>
+          <div class="movie-meta">
+              <span>⭐ 4.6</span>
+              <span> • 1997</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt0369436'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMTQ2MjA0NDAwNF5BMl5BanBnXkFtZTcwOTU4MTM5MQ@@._V1_.jpg" alt="Four Christmases">
+      <div class="movie-info">
+          <div class="movie-title">Four Christmases</div>
+          <div class="movie-meta">
+              <span>⭐ 5.7</span>
+              <span> • 2008</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27131358'">
+      <img src="https://m.media-amazon.com/images/M/MV5BYmQwNzRiNmItODc4Ny00Mjk4LThmYWQtNjI5OGU4OGUxMmY0XkEyXkFqcGc@._V1_.jpg" alt="We Live in Time">
+      <div class="movie-info">
+          <div class="movie-title">We Live in Time</div>
+          <div class="movie-meta">
+              <span>⭐ 7.0</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt24325460'">
+      <img src="https://m.media-amazon.com/images/M/MV5BOGYzOTVlZDQtNDk4ZS00NjU5LWFiODUtZGMzMDUwZDFhYTQ0XkEyXkFqcGc@._V1_.jpg" alt="Squid Game: Season 2 Fan-Film">
+      <div class="movie-info">
+          <div class="movie-title">Squid Game: Season 2 Fan-Film</div>
+          <div class="movie-meta">
+              <span>⭐ 4.6</span>
+              <span> • 2022</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt27534307'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMWI2OWFjNjgtOTQ2Zi00MjlmLTg2MGYtNmE4MjMyZjIzMDA0XkEyXkFqcGc@._V1_.jpg" alt="Speak No Evil">
+      <div class="movie-info">
+          <div class="movie-title">Speak No Evil</div>
+          <div class="movie-meta">
+              <span>⭐ 6.8</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt23468450'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMmJkNGNiNjgtMzFlYy00ZDI5LWI2YzktZGVjYjI5MjQyMGU3XkEyXkFqcGc@._V1_.jpg" alt="Longlegs">
+      <div class="movie-info">
+          <div class="movie-title">Longlegs</div>
+          <div class="movie-meta">
+              <span>⭐ 6.7</span>
+              <span> • 2024</span>
+          </div>
+      </div>
+  </div>
+  <div class="movie-card" onclick="location.href='https://yesmovies.lol/movies/tt6105098'">
+      <img src="https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_.jpg" alt="The Lion King">
+      <div class="movie-info">
+          <div class="movie-title">The Lion King</div>
+          <div class="movie-meta">
+              <span>⭐ 6.8</span>
+              <span> • 2019</span>
+          </div>
+      </div>
+  </div>
+        </div>
+    </main>
+
+       <script>
+  function performSearch() {
+      const query = document.getElementById('searchInput').value.trim();
+      if (query) {
+          window.location.href = `/search/${encodeURIComponent(query)}`;
+      }
+  }
+
+  document.getElementById('searchInput').addEventListener('keypress', function (event) {
+      if (event.key === 'Enter') {
+          performSearch();
+      }
+  });
+</script>
+</body>
+</html>
