@@ -355,6 +355,7 @@ app.get('/movies/:imdb', async (req, res) => {
                     }
                 </style>
                 <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
+                <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
             </head>
             <body>
             <div class="navbar-container">
@@ -639,6 +640,7 @@ app.get('/shows/:imdb', async (req, res) => {
                         margin-top: 1rem;
                     }
                 </style>
+                <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
                 <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
             </head>
             <body>
