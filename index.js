@@ -693,9 +693,9 @@ app.get('/shows/:imdb', async (req, res) => {
 
 app.get('/search/:query', async (req, res) => {
     const query = req.params.query;
-    const limit = 100; // Set the limit to 10 or 15 as required
+    const limit = 100; // Adjust the limit as required
 
-    const url = https://imdb236.p.rapidapi.com/imdb/search?primaryTitle=${query}&sortField=numVotes;
+    const url = `https://imdb236.p.rapidapi.com/imdb/search?primaryTitle=${query}&sortField=numVotes`;
     const options = {
         method: 'GET',
         headers: {
@@ -705,7 +705,6 @@ app.get('/search/:query', async (req, res) => {
     };
 
     try {
-        console.log('hello')
         const response = await fetch(url, options);
         const result = await response.json();
 
@@ -720,7 +719,7 @@ app.get('/search/:query', async (req, res) => {
 
         const movieDetails = await Promise.all(
             movies.map(async (movie) => {
-                const urlmov = https://imdb236.p.rapidapi.com/imdb/${movie.id};
+                const urlmov = `https://imdb236.p.rapidapi.com/imdb/${movie.id}`;
                 const optionsmov = {
                     method: 'GET',
                     headers: {
@@ -749,7 +748,7 @@ app.get('/search/:query', async (req, res) => {
         const movieCards = movieDetails
             .map((movie) => {
                 const linkType = movie.type === 'tvSeries' ? 'shows' : 'movies';
-                return 
+                return `
                     <div class="movie-card" onclick="location.href='https://yesmovies.lol/${linkType}/${movie.id}'">
                         <img src="${movie.image}" alt="${movie.primaryTitle}" />
                         <div class="movie-info">
@@ -760,238 +759,156 @@ app.get('/search/:query', async (req, res) => {
                             </div>
                         </div>
                     </div>
-                ;
+                `;
             })
             .join('');
 
-        res.send(
+        res.send(`
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <meta name="description" content="Yes Movies - Watch your favorite movies and TV shows for free. Stream the latest content with no subscription required.">
-                <meta name="keywords" content="free movies, free tv shows, streaming, online movies, watch movies">
                 <title>Search Results - Yes Movies</title>
-                <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
-                <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
                 <style>
-    @font-face {
-        font-family: 'Wonderly';
-        src: url('/Wonderly.otf') format('opentype');
-    }
-
-    :root {
-        --bg-color: #121212;
-        --accent-color: #8B5CF6;
-        --accent-hover: #7C3AED;
-        --text-color: #FFFFFF;
-        --nav-bg: rgba(30, 30, 30, 0.95);
-        --card-bg: #1E1E1E;
-    }
-
-    body {
-        font-family: "Arial";
-        margin: 0;
-        padding: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-    }
-
-    .navbar {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 1200px;
-        background: var(--nav-bg);
-        border-radius: 5px; /* Subtle rounding */
-        padding: 15px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Simple shadow */
-        border: 1px solid var(--accent-color);
-        z-index: 1000;
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        color: var(--text-color);
-        text-decoration: none;
-        font-family: Wonderly;
-    }
-
-    .logo span {
-        color: var(--accent-color);
-    }
-
-    .search-bar-container {
-        display: flex;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
-        padding: 5px;
-        width: 40%;
-        border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .search-bar-container:focus-within {
-        box-shadow: 0 0 10px var(--accent-color);
-    }
-
-    .search-bar {
-        background: transparent;
-        border: none;
-        color: var(--text-color);
-        width: 100%;
-        padding: 8px 15px;
-        font-size: 16px;
-        outline: none;
-    }
-
-    .search-bar::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .search-icon {
-        background: var(--accent-color);
-        width: 80px;
-        height: 30px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .search-icon:hover {
-        background: var(--accent-hover);
-    }
-
-    .main-content {
-        padding-top: 100px;
-        padding-inline: 20px;
-        min-height: calc(100vh - 200px);
-    }
-
-    .movie-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller column size for better visibility */
-        gap: 15px;
-        justify-content: center;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .movie-card {
-        background: var(--card-bg);
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        transition: transform 0.2s ease, opacity 0.3s;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .movie-card:hover {
-        transform: translateY(-5px);
-        opacity: 0.8;
-        cursor: pointer;
-    }
-
-    .movie-card img {
-        width: 100%;
-        aspect-ratio: 3/4; /* Smaller aspect ratio for better visibility */
-        object-fit: cover;
-        display: block;
-    }
-
-    .movie-info {
-        padding: 10px;
-        text-align: center;
-        background: var(--card-bg);
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .movie-title {
-        font-size: 16px;
-        font-weight: bold;
-        color: var(--text-color);
-        margin-bottom: 5px;
-    }
-
-    .movie-meta {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .section-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        color: var(--text-color);
-        text-align: center;
-    }
-
-    footer {
-        text-align: center;
-        padding: 40px 0;
-        margin-top: 60px;
-        color: var(--text-color);
-        opacity: 0.8;
-        font-size: 14px;
-    }
-
-    footer span {
-        color: var(--accent-color);
-    }
-</style>
-
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        background-color: #121212;
+                        color: #FFFFFF;
+                    }
+                    .navbar {
+                        position: fixed;
+                        top: 0;
+                        width: 100%;
+                        background-color: #1E1E1E;
+                        padding: 15px 20px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                        z-index: 1000;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        color: #FFFFFF;
+                    }
+                    .navbar a {
+                        color: #FFFFFF;
+                        text-decoration: none;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                    .navbar a span {
+                        color: #8B5CF6;
+                    }
+                    .search-bar-container {
+                        display: flex;
+                        align-items: center;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 5px;
+                        padding: 5px;
+                        width: 40%;
+                    }
+                    .search-bar {
+                        background: transparent;
+                        border: none;
+                        color: #FFFFFF;
+                        width: 100%;
+                        padding: 8px 15px;
+                        font-size: 16px;
+                        outline: none;
+                    }
+                    .search-bar::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+                    .search-icon {
+                        background: #8B5CF6;
+                        padding: 8px 15px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        color: #FFFFFF;
+                        font-size: 16px;
+                        text-align: center;
+                    }
+                    .search-icon:hover {
+                        background: #7C3AED;
+                    }
+                    .main-content {
+                        padding-top: 80px;
+                        text-align: center;
+                    }
+                    .movie-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                        gap: 15px;
+                        padding: 20px;
+                    }
+                    .movie-card {
+                        background: #1E1E1E;
+                        padding: 10px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        text-align: center;
+                    }
+                    .movie-card img {
+                        max-width: 100%;
+                        border-radius: 8px;
+                    }
+                    .side-ad {
+                        position: fixed;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 160px;
+                        height: 300px;
+                    }
+                    .side-ad.left {
+                        left: 10px;
+                    }
+                    .side-ad.right {
+                        right: 10px;
+                    }
+                </style>
             </head>
             <body>
-                <nav class="navbar">
-                    <a href="https://yesmovies.lol/index.html" class="logo">YES<span>MOVIES</span></a>
+                <div class="navbar">
+                    <a href="https://yesmovies.lol">YES<span>MOVIES</span></a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
                         <div class="search-icon" onclick="performSearch()">Search</div>
                     </div>
-                </nav>
-
-                <main class="main-content">
-                    <h2 class="section-title">Search Results for "${query}"</h2>
+                </div>
+                <div class="side-ad left">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': 'e7e6303c943a12af92fcfb3e225832e8',
+                            'format': 'iframe',
+                            'height': 300,
+                            'width': 160,
+                            'params': {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
+                </div>
+                <div class="side-ad right">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key': 'e7e6303c943a12af92fcfb3e225832e8',
+                            'format': 'iframe',
+                            'height': 300,
+                            'width': 160,
+                            'params': {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
+                </div>
+                <div class="main-content">
+                    <h2>Search Results for "${query}"</h2>
                     <div class="movie-grid">
                         ${movieCards}
                     </div>
-                </main>
-
-                <footer>
-                    Made with <span>♥</span> by Yes Movies
-                </footer>
-
-                <script>
-                    function performSearch() {
-                        const query = document.getElementById('searchInput').value.trim();
-                        if (query) {
-                            const url = '/search/' + encodeURIComponent(query);
-                            window.location.href = url;
-                        }
-                    }
-                    document.getElementById('searchInput').addEventListener('keypress', function (event) {
-                        if (event.key === 'Enter') performSearch();
-                    });
-                </script>
+                </div>
             </body>
             </html>
-        );
+        `);
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while fetching data.');
