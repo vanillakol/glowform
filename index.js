@@ -876,30 +876,8 @@ app.get('/search/:query', async (req, res) => {
                         <div class="search-icon" onclick="performSearch()">Search</div>
                     </div>
                 </div>
-                <div class="side-ad left">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': 'e7e6303c943a12af92fcfb3e225832e8',
-                            'format': 'iframe',
-                            'height': 300,
-                            'width': 160,
-                            'params': {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
-                </div>
-                <div class="side-ad right">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': 'e7e6303c943a12af92fcfb3e225832e8',
-                            'format': 'iframe',
-                            'height': 300,
-                            'width': 160,
-                            'params': {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
-                </div>
+               
+                
                 <div class="main-content">
                     <h2>Search Results for "${query}"</h2>
                     <div class="movie-grid">
