@@ -8,7 +8,6 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://yesmovies.lol">
 
-
     <title>YesMovies - Watch FREE Movies & Shows Online | Yes Movies</title>
     <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.08c4a010af67c6d824b33fa5d38dd31f?rik=OxoA0JC1W%2bk%2fkA&pid=ImgRaw&r=0">
     <style>
@@ -35,14 +34,13 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
         }
 
         .search-container {
             width: 90%;
             max-width: 600px;
+            margin: 0 auto;
             padding: 20px;
         }
 
@@ -148,21 +146,26 @@
         footer span {
             color: var(--accent-color);
         }
+
+        /* Styles for the side ads */
+        .side-ad {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 160px;
+        }
+
+        .side-ad.left {
+            left: 10px;
+        }
+
+        .side-ad.right {
+            right: 10px;
+        }
     </style>
-
 </head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z26KN7LMXE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Z26KN7LMXE');
-</script>
 <body>
-	
-<div id="container-5e294a7e0af022120c5994f396095a62"></div>
+    <div id="container-5e294a7e0af022120c5994f396095a62"></div>
     <div class="search-container">
         <h1 class="logo">Yes<span>Movies</span></h1>
         <div class="search-bar-container">
@@ -173,16 +176,7 @@
             <a href="topMovies.html" class="link">Top Movies</a>
             <a href="ts.html" class="link">Top Shows</a>
         </div>
-	     <script type="text/javascript">
-	atOptions = {
-		'key' : 'e7e6303c943a12af92fcfb3e225832e8',
-		'format' : 'iframe',
-		'height' : 300,
-		'width' : 160,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
+
         <div class="seo-content">
             <h2>Watch Movies Online Free</h2>
             <p>YesMovies.lol is one of the best free sites to watch movies online for free in 2025. With no registration or payment required, you can binge-watch tens of thousands of movies and TV shows in HD quality seamlessly and safely. New titles are updated on the site daily to ensure the fun never ends on YesMovies.lol. If you don’t find your movie of interest, simply make a request, and we will scour the Internet to provide the content you’ve been longing for.</p>
@@ -191,6 +185,34 @@
             <h2>Is YesMovies.lol Safe?</h2>
             <p>YesMovies.lol is safe and ad-free, protecting you from malware and intrusive ads. We don’t require registration or private information, so you can enjoy your favorite content without worry.</p>
         </div>
+    </div>
+
+    <!-- Left ad -->
+    <div class="side-ad left">
+        <script type="text/javascript">
+            atOptions = {
+                'key': 'e7e6303c943a12af92fcfb3e225832e8',
+                'format': 'iframe',
+                'height': 300,
+                'width': 160,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
+    </div>
+
+    <!-- Right ad -->
+    <div class="side-ad right">
+        <script type="text/javascript">
+            atOptions = {
+                'key': 'e7e6303c943a12af92fcfb3e225832e8',
+                'format': 'iframe',
+                'height': 300,
+                'width': 160,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/e7e6303c943a12af92fcfb3e225832e8/invoke.js"></script>
     </div>
 
     <footer>
@@ -211,6 +233,5 @@
             if (event.key === 'Enter') performSearch();
         });
     </script>
-   
 </body>
 </html>
