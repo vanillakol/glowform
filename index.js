@@ -781,11 +781,57 @@ app.get('/search/:query', async (req, res) => {
                         top: 0;
                         width: 100%;
                         background-color: #1E1E1E;
-                        padding: 10px 20px;
+                        padding: 15px 20px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+                        z-index: 1000;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        color: #FFFFFF;
+                    }
+                    .navbar a {
+                        color: #FFFFFF;
+                        text-decoration: none;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+                    .navbar a span {
+                        color: #8B5CF6;
+                    }
+                    .search-bar-container {
+                        display: flex;
+                        align-items: center;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 5px;
+                        padding: 5px;
+                        width: 40%;
+                    }
+                    .search-bar {
+                        background: transparent;
+                        border: none;
+                        color: #FFFFFF;
+                        width: 100%;
+                        padding: 8px 15px;
+                        font-size: 16px;
+                        outline: none;
+                    }
+                    .search-bar::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+                    .search-icon {
+                        background: #8B5CF6;
+                        padding: 8px 15px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        color: #FFFFFF;
+                        font-size: 16px;
                         text-align: center;
                     }
+                    .search-icon:hover {
+                        background: #7C3AED;
+                    }
                     .main-content {
-                        padding-top: 60px;
+                        padding-top: 80px;
                         text-align: center;
                     }
                     .movie-grid {
@@ -821,7 +867,13 @@ app.get('/search/:query', async (req, res) => {
                 </style>
             </head>
             <body>
-                <div class="navbar">Yes Movies</div>
+                <div class="navbar">
+                    <a href="https://yesmovies.lol">YES<span>MOVIES</span></a>
+                    <div class="search-bar-container">
+                        <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
+                        <div class="search-icon" onclick="performSearch()">Search</div>
+                    </div>
+                </div>
                 <div class="side-ad left">
                     <script type="text/javascript">
                         atOptions = {
