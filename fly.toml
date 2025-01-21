@@ -13,12 +13,13 @@ primary_region = 'dfw'
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 2 # Start with 2 machines always running
-  max_machines_running = 5 # Allow up to 5 machines for scaling
+  min_machines_running = 3 # Start with 3 machines to distribute the load better
+  max_machines_running = 8 # Allow scaling up to 8 machines during high traffic
   processes = ['app']
 
 [[vm]]
-  memory = '2gb' # Increase memory to 2GB
-  cpu_kind = 'shared' # Shared CPUs for moderate scaling
-  cpus = 2 # Allocate 2 CPUs for better performance
-  memory_mb = 2048 # Match memory in MB
+  memory = '2gb' # 2GB memory for each instance
+  cpu_kind = 'shared' # Shared CPUs for cost efficiency
+  cpus = 2 # 2 CPUs per instance for better concurrency
+  memory_mb = 2048 # Match memory in MB for clarity
+
