@@ -178,7 +178,7 @@ app.get('/movies/:imdb', async (req, res) => {
     border: none;
     border-radius: 8px;
     box-shadow: 0 4px 20px var(--shadow);
-    max-width: 100%; /* Ensures it doesn’t exceed the container's width */
+    max-width: 100%; /* Ensures it doesn't exceed the container's width */
 }
 
 @media (max-width: 768px) {
@@ -413,7 +413,18 @@ app.get('/movies/:imdb', async (req, res) => {
                     </div>
                 </div>
 
-             
+                 <script>
+
+                    function performSearch() {
+                        const query = document.getElementById('searchInput').value.trim();
+                        if (query) {
+                            const url = '/search/' + encodeURIComponent(query);
+                            window.location.href = url; // Redirect to the search results page
+                        } else {
+                            alert('Please enter a search term.'); // Optional: Alert if the input is empty
+                        }
+                    }
+                </script>
             </body>
             </html>
         `);
