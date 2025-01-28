@@ -338,6 +338,15 @@ app.get('/movies/:imdb', async (req, res) => {
                         }
                     }
                 </script>
+                <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D5C0M4BFT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D5C0M4BFT');
+</script>
             </body>
             </html>
         `);
@@ -692,6 +701,15 @@ app.get('/shows/:imdb', async (req, res) => {
             }
         });
     </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D5C0M4BFT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D5C0M4BFT');
+</script>
 </body>
 </html>
         `);
@@ -1037,6 +1055,15 @@ app.get('/search/:query', async (req, res) => {
             }
         });
     </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D5C0M4BFT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5D5C0M4BFT');
+</script>
 </body>
 </html>
             `);
