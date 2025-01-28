@@ -284,7 +284,7 @@ app.get('/movies/:imdb', async (req, res) => {
             <body>
                 <nav class="navbar">
                     <a href="/" class="logo">
-                        <span class="yes">Yes</span><span class="movies">Movies</span>
+                        <span class="yes">Flix</span><span class="movies">tor</span>
                     </a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
@@ -637,7 +637,7 @@ app.get('/shows/:imdb', async (req, res) => {
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">Yes<span>Movies</span></a>
+        <a href="/" class="logo">Flix<span>tor</span></a>
         <div class="search-container">
             <input type="search" class="search-bar" placeholder="Search movies & shows..." id="searchInput">
             <button class="search-button" onclick="performSearch()">Search</button>
@@ -1014,7 +1014,7 @@ app.get('/search/:query', async (req, res) => {
 <body>
     <nav class="navbar">
         <div class="navbar-content">
-            <a href="/" class="logo">Yes<span>Movies</span></a>
+            <a href="/" class="logo">Flix<span>tor</span></a>
             <div class="search-container">
                 <input type="search" class="search-bar" placeholder="Search movies & shows..." id="searchInput">
                 <button class="search-button" onclick="performSearch()">Search</button>
