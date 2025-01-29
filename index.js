@@ -50,7 +50,7 @@ app.get('/movies/:imdb', async (req, res) => {
                 <title>${title}</title>
                 <link rel="icon" type="image/x-icon" href="https://th.bing.com/th/id/R.17dea5ebc20f4fd10389b4f180ae9b3d?rik=e9t%2fhvOQADZM1g&riu=http%3a%2f%2fclipart-library.com%2fimages%2f8i65B8AXT.png&ehk=ruY7nFucsGPNXtLQ6BYoDblZX0Klw15spn25fXFppPs%3d&risl=&pid=ImgRaw&r=0">
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-                <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1TrEilJl6-Ee5LYW4Sih28zleLfosO_1JPA&s">
+                <link rel="icon" href="https://th.bing.com/th/id/R.17dea5ebc20f4fd10389b4f180ae9b3d?rik=e9t%2fhvOQADZM1g&riu=http%3a%2f%2fclipart-library.com%2fimages%2f8i65B8AXT.png&ehk=ruY7nFucsGPNXtLQ6BYoDblZX0Klw15spn25fXFppPs%3d&risl=&pid=ImgRaw&r=0">
                 <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
                 <style>
                     :root {
@@ -422,7 +422,7 @@ app.get('/shows/:imdb', async (req, res) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title} - Flixtor</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1TrEilJl6-Ee5LYW4Sih28zleLfosO_1JPA&s">
+    <link rel="icon" href="https://th.bing.com/th/id/R.17dea5ebc20f4fd10389b4f180ae9b3d?rik=e9t%2fhvOQADZM1g&riu=http%3a%2f%2fclipart-library.com%2fimages%2f8i65B8AXT.png&ehk=ruY7nFucsGPNXtLQ6BYoDblZX0Klw15spn25fXFppPs%3d&risl=&pid=ImgRaw&r=0">
     <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
     <style>
         :root {
