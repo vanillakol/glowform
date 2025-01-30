@@ -284,7 +284,7 @@ app.get('/movies/:imdb', async (req, res) => {
             <body>
                 <nav class="navbar">
                     <a href="/" class="logo">
-                        <span class="yes">Flix</span><span class="movies">tor</span>
+                        <span class="yes">Yes</span><span class="movies">Movies</span>
                     </a>
                     <div class="search-bar-container">
                         <input id="searchInput" type="text" class="search-bar" placeholder="Search movies & shows...">
@@ -420,7 +420,7 @@ app.get('/shows/:imdb', async (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} - Flixtor</title>
+    <title>${title} - YesMovies</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://th.bing.com/th/id/R.17dea5ebc20f4fd10389b4f180ae9b3d?rik=e9t%2fhvOQADZM1g&riu=http%3a%2f%2fclipart-library.com%2fimages%2f8i65B8AXT.png&ehk=ruY7nFucsGPNXtLQ6BYoDblZX0Klw15spn25fXFppPs%3d&risl=&pid=ImgRaw&r=0">
     <script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
@@ -637,7 +637,7 @@ app.get('/shows/:imdb', async (req, res) => {
 </head>
 <body>
     <nav class="navbar">
-        <a href="/" class="logo">Flix<span>tor</span></a>
+        <a href="/" class="logo">Yes<span>Movies</span></a>
         <div class="search-container">
             <input type="search" class="search-bar" placeholder="Search movies & shows..." id="searchInput">
             <button class="search-button" onclick="performSearch()">Search</button>
@@ -779,7 +779,7 @@ app.get('/search/:query', async (req, res) => {
             .map((movie) => {
                 const linkType = movie.type === 'tvSeries' ? 'shows' : 'movies';
                 return `
-                    <div class="movie-card" onclick="location.href='https://flixtor2.site/${linkType}/${movie.id}'">
+                    <div class="movie-card" onclick="location.href='https://yesmovies.lol/${linkType}/${movie.id}'">
                         <img src="${movie.image}" alt="${movie.primaryTitle}" />
                         <div class="movie-info">
                             <div class="movie-title">${movie.primaryTitle}</div>
@@ -799,7 +799,7 @@ app.get('/search/:query', async (req, res) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - Flixtor</title>
+    <title>Search Results - YesMovies</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://th.bing.com/th/id/R.17dea5ebc20f4fd10389b4f180ae9b3d?rik=e9t%2fhvOQADZM1g&riu=http%3a%2f%2fclipart-library.com%2fimages%2f8i65B8AXT.png&ehk=ruY7nFucsGPNXtLQ6BYoDblZX0Klw15spn25fXFppPs%3d&risl=&pid=ImgRaw&r=0">
 
@@ -1014,7 +1014,7 @@ app.get('/search/:query', async (req, res) => {
 <body>
     <nav class="navbar">
         <div class="navbar-content">
-            <a href="/" class="logo">FLix<span>tor</span></a>
+            <a href="/" class="logo">Yes<span>Movies</span></a>
             <div class="search-container">
                 <input type="search" class="search-bar" placeholder="Search movies & shows..." id="searchInput">
                 <button class="search-button" onclick="performSearch()">Search</button>
