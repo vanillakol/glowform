@@ -362,7 +362,7 @@ app.get('/shows/:imdb', async (req, res) => {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'c184b7c08dmshcb3d53a5367e794p14b044jsna1831453c2e6',
+            'x-rapidapi-key': '24ba1673d8mshfc800b94eb93cb0p1dce51jsn474acb0593c3',
             'x-rapidapi-host': 'imdb236.p.rapidapi.com'
         }
     };
@@ -729,7 +729,7 @@ app.get('/search/:query', async (req, res) => {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': 'c184b7c08dmshcb3d53a5367e794p14b044jsna1831453c2e6',
+            'x-rapidapi-key': '24ba1673d8mshfc800b94eb93cb0p1dce51jsn474acb0593c3',
             'x-rapidapi-host': 'imdb236.p.rapidapi.com',
         },
     };
@@ -753,7 +753,7 @@ app.get('/search/:query', async (req, res) => {
                 const optionsmov = {
                     method: 'GET',
                     headers: {
-                        'x-rapidapi-key': 'c184b7c08dmshcb3d53a5367e794p14b044jsna1831453c2e6',
+                        'x-rapidapi-key': '24ba1673d8mshfc800b94eb93cb0p1dce51jsn474acb0593c3',
                         'x-rapidapi-host': 'imdb236.p.rapidapi.com',
                     },
                 };
