@@ -1011,6 +1011,7 @@ app.get('/search/:query', async (req, res) => {
         }
     </style>
 </head>
+<script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
 <body>
     <nav class="navbar">
         <div class="navbar-content">
