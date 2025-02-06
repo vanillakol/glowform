@@ -280,8 +280,7 @@ app.get('/movies/:imdb', async (req, res) => {
                     }
                 </style>
             </head>
-                    <script data-cfasync="false" async type="text/javascript" src="//hr.unkinpaynim.com/rN0XsQUZqSUc5uv/116009"></script>
-            <body>
+<script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>            <body>
                 <nav class="navbar">
                     <a href="/" class="logo">
                         <span class="yes">Yes</span><span class="movies">Movies</span>
@@ -634,8 +633,7 @@ app.get('/shows/:imdb', async (req, res) => {
         }
     </style>
 </head>
-    <script data-cfasync="false" async type="text/javascript" src="//hr.unkinpaynim.com/rN0XsQUZqSUc5uv/116009"></script>
-
+<script type='text/javascript' src='//ushermassacrecranny.com/cb/1b/20/cb1b2051c4112987c288797c233ef8d7.js'></script>
 <body>
     <nav class="navbar">
         <a href="/" class="logo">Yes<span>Movies</span></a>
