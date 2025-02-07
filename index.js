@@ -25,7 +25,7 @@ app.get('/movies/:imdb', async (req, res) => {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '24ba1673d8mshfc800b94eb93cb0p1dce51jsn474acb0593c3',
+            'x-rapidapi-key': '9fb9e2fd36mshe7b0ad331b6a8dfp1bec52jsn2ba9b0676d2d',
             'x-rapidapi-host': 'imdb236.p.rapidapi.com'
         }
     };
