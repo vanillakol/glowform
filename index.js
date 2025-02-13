@@ -778,7 +778,7 @@ app.get('/search/:query', async (req, res) => {
             .map((movie) => {
                 const linkType = movie.type === 'tvSeries' ? 'shows' : 'movies';
                 return `
-                    <div class="movie-card" onclick="location.href='https://yesmovies.lol/${linkType}/${movie.id}'">
+                    <div class="movie-card" onclick="location.href='https://allstream.cc/${linkType}/${movie.id}'">
                         <img src="${movie.image}" alt="${movie.primaryTitle}" />
                         <div class="movie-info">
                             <div class="movie-title">${movie.primaryTitle}</div>
