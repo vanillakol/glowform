@@ -5,6 +5,7 @@ const app = express();
 
 app.use(cors());
 
+const URL = 'https://streamtp3.com/eventos.html';
 
 
 app.use(express.static('public'));
@@ -1071,6 +1072,178 @@ app.get('/search/:query', async (req, res) => {
         console.error(error);
         res.status(500).send('An error occurred while fetching data.');
     }
+});
+
+
+app.get('/live-events', async (req, res) => {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+
+    try {
+        await page.goto(URL, { waitUntil: 'networkidle2' });
+        await page.waitForSelector('.event-name', { timeout: 10000 });
+
+        const events = await page.evaluate((url) => {
+            return Array.from(document.querySelectorAll('.event-name')).map(eventElement => {
+                const title = eventElement.textContent.trim();
+                const iframeInput = eventElement.parentElement.querySelector('.iframe-link');
+                let link = '#';
+                
+                if (iframeInput) {
+                    try {
+                        link = new URL(iframeInput.value.trim(), url).href;
+                    } catch (error) {
+                        console.error('Invalid URL:', iframeInput.value.trim());
+                    }
+                }
+
+                const statusButton = eventElement.parentElement.querySelector('.status-button');
+                let status = 'Unknown';
+                if (statusButton) {
+                    if (statusButton.classList.contains('status-next')) status = 'Soon';
+                    else if (statusButton.classList.contains('status-live')) status = 'Live';
+                    else if (statusButton.classList.contains('status-finished')) status = 'Finished';
+                }
+
+                return { title, link, status };
+            });
+        }, URL);
+
+        const html = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Live Events</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+                <style>
+                    .status { 
+                        font-weight: bold; 
+                        padding: 5px 10px; 
+                        border-radius: 5px; 
+                        margin-left: 10px;
+                    }
+                    .status.Soon { background: #ffd700; color: black; }
+                    .status.Live { background: #ff4444; color: white; }
+                    .status.Finished { background: #808080; color: white; }
+                    .watch-btn.disabled { opacity: 0.5; cursor: not-allowed; }
+                </style>
+            </head>
+            <body class="bg-gray-100 min-h-screen p-4">
+                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+                    <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Live Events</h1>
+                    <div class="space-y-4">
+                        ${events.map(event => `
+                            <div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center">
+                                    <span class="font-medium text-gray-800">${event.title}</span>
+                                    <span class="status ${event.status}">${event.status}</span>
+                                </div>
+                                <a class="watch-btn ${event.link === '#' ? 'disabled' : ''} 
+                                    bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors
+                                    ${event.link === '#' ? 'pointer-events-none' : ''}"
+                                   ${event.link !== '#' ? `href="/stream/${encodeURIComponent(event.link)}?title=${encodeURIComponent(event.title)}"` : ''}>
+                                    Watch Now
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+
+        res.send(html);
+    } catch (error) {
+        console.error('Scraping Error:', error);
+        res.status(500).send(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Error</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+            </head>
+            <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+                <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+                    <h1 class="text-2xl font-bold text-red-600 mb-4">Error</h1>
+                    <p class="text-gray-700">Unable to fetch live events. Please try again later.</p>
+                    <button onclick="window.location.reload()" 
+                            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">
+                        Retry
+                    </button>
+                </div>
+            </body>
+            </html>
+        `);
+    } finally {
+        await browser.close();
+    }
+});
+
+// Endpoint to serve the stream page
+app.get('/stream/:url', (req, res) => {
+  const externalUrl = decodeURIComponent(req.params.url);
+  const title = req.query.title || 'Live Stream';
+  
+  const html = `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>${title}</title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+          <style>
+              body, html { margin: 0; padding: 0; height: 100vh; }
+              .aspect-video { aspect-ratio: 16 / 9; }
+          </style>
+      </head>
+      <body class="bg-gray-100">
+          <div class="min-h-screen flex flex-col">
+              <header class="bg-white border-b">
+                  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+                      <div class="flex items-center gap-4">
+                          <a href="/live-events" class="text-gray-600 hover:text-gray-900">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                              </svg>
+                          </a>
+                          <h1 class="text-xl font-semibold text-gray-900">${title}</h1>
+                      </div>
+                      <button onclick="toggleFullscreen()" class="text-gray-600 hover:text-gray-900">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                          </svg>
+                      </button>
+                  </div>
+              </header>
+              <main class="flex-1 p-4">
+                  <div class="max-w-6xl mx-auto bg-black rounded-lg overflow-hidden">
+                      <div class="aspect-video w-full h-96"> <!-- Adjusted to a specific height -->
+                          <iframe src="${externalUrl}" 
+                                  class="w-full h-full" 
+                                  allowfullscreen>
+                          </iframe>
+                      </div>
+                  </div>
+              </main>
+          </div>
+          <script>
+              function toggleFullscreen() {
+                  if (!document.fullscreenElement) {
+                      document.documentElement.requestFullscreen();
+                  } else {
+                      document.exitFullscreen();
+                  }
+              }
+          </script>
+      </body>
+      </html>
+  `;
+  res.send(html);
 });
 
 
