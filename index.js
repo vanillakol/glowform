@@ -1079,86 +1079,94 @@ app.get('/search/:query', async (req, res) => {
 app.get('/live-events', async (req, res) => {
     let browser;
     try {
-        // Launch browser with required configuration
+        // Configure Puppeteer for Fly.io environment
         browser = await puppeteer.launch({
             headless: true,
+            executablePath: process.env.NODE_ENV === 'production' ? '/usr/bin/google-chrome' : null,
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
-                '--disable-accelerated-2d-canvas',
-                '--disable-gpu'
+                '--single-process',
+                '--no-zygote'
             ]
         });
+
+        console.log('Browser launched successfully');
         
         const page = await browser.newPage();
+        console.log('New page created');
+
+        // Increase timeouts and add debug logging
+        page.setDefaultNavigationTimeout(60000);
+        page.setDefaultTimeout(60000);
+
+        // Enable request logging
+        page.on('console', msg => console.log('PAGE LOG:', msg.text()));
         
-        // Set viewport and timeout
-        await page.setViewport({ width: 1280, height: 800 });
-        await page.setDefaultNavigationTimeout(30000);
-        
-        // Navigate to the page with error handling
+        console.log('Navigating to URL:', URL);
         await page.goto(URL, { 
             waitUntil: 'networkidle2',
-            timeout: 30000
+            timeout: 60000
         });
+        console.log('Page loaded');
 
-        // Wait for content with more specific selector and error handling
+        // Wait for content and handle potential structure changes
+        const eventSelector = '.event-name, .evento-name, .event';  // Multiple possible selectors
         try {
-            await page.waitForSelector('.event-name', { timeout: 15000 });
+            await page.waitForSelector(eventSelector, { timeout: 30000 });
+            console.log('Events found on page');
         } catch (error) {
             console.error('Selector timeout:', error);
             throw new Error('Failed to load event data');
         }
 
-        // Extract events with error handling
-        const events = await page.evaluate((baseUrl) => {
-            try {
-                const eventElements = document.querySelectorAll('.event-name');
-                if (!eventElements.length) {
-                    throw new Error('No events found');
-                }
+        // Extract events with detailed logging
+        const events = await page.evaluate(() => {
+            console.log('Starting event extraction');
+            const events = [];
+            
+            // Try multiple possible selectors
+            const eventElements = document.querySelectorAll('.event-name, .evento-name, .event');
+            console.log(`Found ${eventElements.length} events`);
 
-                return Array.from(eventElements).map(eventElement => {
-                    try {
-                        const title = eventElement.textContent?.trim() || 'Untitled Event';
-                        const iframeInput = eventElement.parentElement?.querySelector('.iframe-link');
-                        let link = '#';
-                        
-                        if (iframeInput?.value) {
-                            try {
-                                link = new URL(iframeInput.value.trim(), baseUrl).href;
-                            } catch (urlError) {
-                                console.error('Invalid URL:', iframeInput.value.trim());
-                            }
-                        }
-
-                        const statusButton = eventElement.parentElement?.querySelector('.status-button');
-                        let status = 'Unknown';
-                        
-                        if (statusButton) {
-                            if (statusButton.classList.contains('status-next')) status = 'Soon';
-                            else if (statusButton.classList.contains('status-live')) status = 'Live';
-                            else if (statusButton.classList.contains('status-finished')) status = 'Finished';
-                        }
-
-                        return { title, link, status };
-                    } catch (itemError) {
-                        console.error('Error processing event:', itemError);
-                        return null;
+            eventElements.forEach((element, index) => {
+                try {
+                    const title = element.textContent?.trim() || 'Untitled Event';
+                    const iframeInput = element.parentElement?.querySelector('.iframe-link, .stream-link, input[type="text"]');
+                    let link = '#';
+                    
+                    if (iframeInput?.value) {
+                        link = iframeInput.value.trim();
                     }
-                }).filter(event => event !== null);
-            } catch (evaluateError) {
-                console.error('Evaluation error:', evaluateError);
-                return [];
-            }
-        }, URL);
 
-        // Send response with proper error handling
+                    const statusElement = element.parentElement?.querySelector('.status-button, .status');
+                    let status = 'Unknown';
+                    
+                    if (statusElement) {
+                        const classList = statusElement.classList;
+                        if (classList.contains('status-next') || classList.contains('soon')) status = 'Soon';
+                        else if (classList.contains('status-live') || classList.contains('live')) status = 'Live';
+                        else if (classList.contains('status-finished') || classList.contains('finished')) status = 'Finished';
+                    }
+
+                    events.push({ title, link, status });
+                    console.log(`Processed event ${index + 1}: ${title}`);
+                } catch (error) {
+                    console.error(`Error processing event ${index + 1}:`, error);
+                }
+            });
+
+            return events;
+        });
+
+        console.log(`Extracted ${events.length} events`);
+
         if (!events || events.length === 0) {
             throw new Error('No events data available');
         }
 
+        // Send the response with the events data
         const html = `
             <!DOCTYPE html>
             <html lang="en">
@@ -1200,12 +1208,12 @@ app.get('/live-events', async (req, res) => {
                             </div>
                         `).join('')}
                     </div>
-                </div>
-                <div class="text-center mt-4">
-                    <button onclick="window.location.reload()" 
-                            class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors">
-                        Refresh Events
-                    </button>
+                    <div class="text-center mt-6">
+                        <button onclick="window.location.reload()" 
+                                class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-md transition-colors">
+                            Refresh Events
+                        </button>
+                    </div>
                 </div>
             </body>
             </html>
@@ -1216,7 +1224,6 @@ app.get('/live-events', async (req, res) => {
     } catch (error) {
         console.error('Live Events Error:', error);
         
-        // Send a user-friendly error page
         res.status(500).send(`
             <!DOCTYPE html>
             <html lang="en">
@@ -1235,10 +1242,14 @@ app.get('/live-events', async (req, res) => {
                         <li>Network connectivity issues</li>
                         <li>Source website maintenance</li>
                     </ul>
-                    <div class="flex justify-center">
+                    <div class="flex justify-center space-x-4">
                         <button onclick="window.location.reload()" 
                                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-colors">
                             Try Again
+                        </button>
+                        <button onclick="window.location.href='/'" 
+                                class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-md transition-colors">
+                            Go Home
                         </button>
                     </div>
                 </div>
@@ -1246,17 +1257,16 @@ app.get('/live-events', async (req, res) => {
             </html>
         `);
     } finally {
-        // Always close the browser
         if (browser) {
             try {
                 await browser.close();
+                console.log('Browser closed successfully');
             } catch (closeError) {
                 console.error('Error closing browser:', closeError);
             }
         }
     }
 });
-
 // Endpoint to serve the stream page
 app.get('/stream/:url', (req, res) => {
   const externalUrl = decodeURIComponent(req.params.url);
