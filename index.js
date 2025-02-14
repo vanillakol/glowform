@@ -1110,8 +1110,8 @@ app.get('/live-events', async (req, res) => {
         
         console.log('Navigating to URL:', URL);
         await page.goto(URL, { 
-            waitUntil: 'networkidle2',
-            timeout: 60000
+            waitUntil: 'domcontentloaded',
+            timeout: 30000
         });
         console.log('Page loaded');
 
