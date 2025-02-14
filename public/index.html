@@ -319,19 +319,55 @@
         transition: opacity 2s ease-in-out;
     }
 
+     .nav-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: var(--light);
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--primary);
+    }
+
+    .live-sports {
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .live-sports:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
 
 
     </style>
 </head>
 <body>
     <header class="header">
-        <nav class="nav">
-            <a href="/" class="logo">Yes<span style="color: #ffffff;">Movies</span></a>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search movies & shows...">
-            </div>
-        </nav>
-    </header>
+    <nav class="nav">
+        <a href="/" class="logo">Yes<span style="color: #ffffff;">Movies</span></a>
+        <div class="nav-links">
+            <a href="/live-events" class="nav-link live-sports">WATCH LIVE SPORTS</a>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search movies & shows...">
+        </div>
+    </nav>
+</header>
 
     <section class="featured-section" >
         <div class="featured-content">
