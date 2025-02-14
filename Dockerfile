@@ -7,41 +7,29 @@ FROM node:${NODE_VERSION}-slim AS base
 LABEL fly_launch_runtime="Node.js"
 
 # Install Chrome dependencies
+# Install Chromium manually
 RUN apt-get update && apt-get install -y \
-    fonts-liberation \
-    gconf-service \
-    libappindicator1 \
+    chromium \
+    chromium-common \
+    libappindicator3-1 \
     libasound2 \
+    libatk-bridge2.0-0 \
     libatk1.0-0 \
-    libcairo2 \
     libcups2 \
-    libfontconfig1 \
-    libgbm-dev \
-    libgdk-pixbuf2.0-0 \
+    libgbm1 \
     libgtk-3-0 \
-    libicu-dev \
-    libjpeg-dev \
     libnspr4 \
     libnss3 \
-    libpango-1.0-0 \
-    libpangocairo-1.0-0 \
-    libpng-dev \
-    libx11-6 \
     libx11-xcb1 \
-    libxcb1 \
     libxcomposite1 \
     libxcursor1 \
     libxdamage1 \
-    libxext6 \
-    libxfixes3 \
-    libxi6 \
     libxrandr2 \
-    libxrender1 \
-    libxss1 \
-    libxtst6 \
+    libxshmfence1 \
     xdg-utils \
-    wget \
-    ca-certificates
+    ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # Node.js app lives here
 WORKDIR /app
