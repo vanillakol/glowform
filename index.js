@@ -1081,16 +1081,20 @@ app.get('/live-events', async (req, res) => {
     try {
         // Configure Puppeteer for Fly.io environment
         browser = await puppeteer.launch({
-            headless: true,
-            executablePath: process.env.NODE_ENV === 'production' ? '/usr/bin/google-chrome' : null,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--single-process',
-                '--no-zygote'
-            ]
-        });
+        headless: true,
+        executablePath: '/usr/bin/chromium', // Set the correct path for Chromium
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-software-rasterizer',
+            '--disable-features=VizDisplayCompositor',
+            '--single-process',
+            '--no-zygote'
+        ]
+    });
+
 
         console.log('Browser launched successfully');
         
