@@ -1076,38 +1076,87 @@ app.get('/search/:query', async (req, res) => {
 
 
 app.get('/live-events', async (req, res) => {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-
+    let browser;
     try {
-        await page.goto(URL, { waitUntil: 'networkidle2' });
-        await page.waitForSelector('.event-name', { timeout: 10000 });
+        // Launch browser with required configuration
+        browser = await puppeteer.launch({
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--disable-gpu'
+            ]
+        });
+        
+        const page = await browser.newPage();
+        
+        // Set viewport and timeout
+        await page.setViewport({ width: 1280, height: 800 });
+        await page.setDefaultNavigationTimeout(30000);
+        
+        // Navigate to the page with error handling
+        await page.goto(URL, { 
+            waitUntil: 'networkidle2',
+            timeout: 30000
+        });
 
-        const events = await page.evaluate((url) => {
-            return Array.from(document.querySelectorAll('.event-name')).map(eventElement => {
-                const title = eventElement.textContent.trim();
-                const iframeInput = eventElement.parentElement.querySelector('.iframe-link');
-                let link = '#';
-                
-                if (iframeInput) {
+        // Wait for content with more specific selector and error handling
+        try {
+            await page.waitForSelector('.event-name', { timeout: 15000 });
+        } catch (error) {
+            console.error('Selector timeout:', error);
+            throw new Error('Failed to load event data');
+        }
+
+        // Extract events with error handling
+        const events = await page.evaluate((baseUrl) => {
+            try {
+                const eventElements = document.querySelectorAll('.event-name');
+                if (!eventElements.length) {
+                    throw new Error('No events found');
+                }
+
+                return Array.from(eventElements).map(eventElement => {
                     try {
-                        link = new URL(iframeInput.value.trim(), url).href;
-                    } catch (error) {
-                        console.error('Invalid URL:', iframeInput.value.trim());
+                        const title = eventElement.textContent?.trim() || 'Untitled Event';
+                        const iframeInput = eventElement.parentElement?.querySelector('.iframe-link');
+                        let link = '#';
+                        
+                        if (iframeInput?.value) {
+                            try {
+                                link = new URL(iframeInput.value.trim(), baseUrl).href;
+                            } catch (urlError) {
+                                console.error('Invalid URL:', iframeInput.value.trim());
+                            }
+                        }
+
+                        const statusButton = eventElement.parentElement?.querySelector('.status-button');
+                        let status = 'Unknown';
+                        
+                        if (statusButton) {
+                            if (statusButton.classList.contains('status-next')) status = 'Soon';
+                            else if (statusButton.classList.contains('status-live')) status = 'Live';
+                            else if (statusButton.classList.contains('status-finished')) status = 'Finished';
+                        }
+
+                        return { title, link, status };
+                    } catch (itemError) {
+                        console.error('Error processing event:', itemError);
+                        return null;
                     }
-                }
-
-                const statusButton = eventElement.parentElement.querySelector('.status-button');
-                let status = 'Unknown';
-                if (statusButton) {
-                    if (statusButton.classList.contains('status-next')) status = 'Soon';
-                    else if (statusButton.classList.contains('status-live')) status = 'Live';
-                    else if (statusButton.classList.contains('status-finished')) status = 'Finished';
-                }
-
-                return { title, link, status };
-            });
+                }).filter(event => event !== null);
+            } catch (evaluateError) {
+                console.error('Evaluation error:', evaluateError);
+                return [];
+            }
         }, URL);
+
+        // Send response with proper error handling
+        if (!events || events.length === 0) {
+            throw new Error('No events data available');
+        }
 
         const html = `
             <!DOCTYPE html>
@@ -1127,6 +1176,7 @@ app.get('/live-events', async (req, res) => {
                     .status.Soon { background: #ffd700; color: black; }
                     .status.Live { background: #ff4444; color: white; }
                     .status.Finished { background: #808080; color: white; }
+                    .status.Unknown { background: #e0e0e0; color: black; }
                     .watch-btn.disabled { opacity: 0.5; cursor: not-allowed; }
                 </style>
             </head>
@@ -1150,36 +1200,59 @@ app.get('/live-events', async (req, res) => {
                         `).join('')}
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    <button onclick="window.location.reload()" 
+                            class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors">
+                        Refresh Events
+                    </button>
+                </div>
             </body>
             </html>
         `;
 
         res.send(html);
+
     } catch (error) {
-        console.error('Scraping Error:', error);
+        console.error('Live Events Error:', error);
+        
+        // Send a user-friendly error page
         res.status(500).send(`
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Error</title>
+                <title>Error - Live Events</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
             </head>
             <body class="bg-gray-100 min-h-screen flex items-center justify-center">
                 <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
-                    <h1 class="text-2xl font-bold text-red-600 mb-4">Error</h1>
-                    <p class="text-gray-700">Unable to fetch live events. Please try again later.</p>
-                    <button onclick="window.location.reload()" 
-                            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">
-                        Retry
-                    </button>
+                    <h1 class="text-2xl font-bold text-red-600 mb-4">Unable to Load Events</h1>
+                    <p class="text-gray-700 mb-4">We're having trouble loading the live events. This might be due to:</p>
+                    <ul class="list-disc ml-6 mb-6 text-gray-600">
+                        <li>Temporary service disruption</li>
+                        <li>Network connectivity issues</li>
+                        <li>Source website maintenance</li>
+                    </ul>
+                    <div class="flex justify-center">
+                        <button onclick="window.location.reload()" 
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-colors">
+                            Try Again
+                        </button>
+                    </div>
                 </div>
             </body>
             </html>
         `);
     } finally {
-        await browser.close();
+        // Always close the browser
+        if (browser) {
+            try {
+                await browser.close();
+            } catch (closeError) {
+                console.error('Error closing browser:', closeError);
+            }
+        }
     }
 });
 
