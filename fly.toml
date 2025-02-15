@@ -1,9 +1,9 @@
-# fly.toml app configuration file
+# fly.toml app configuration file generated for glowform on 2025-02-15T15:48:28Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'glowform-rjuroq'
+app = 'glowform'
 primary_region = 'dfw'
 
 [build]
@@ -13,13 +13,11 @@ primary_region = 'dfw'
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 3 # Start with 3 machines to distribute the load better
-  max_machines_running = 8 # Allow scaling up to 8 machines during high traffic
+  min_machines_running = 0
   processes = ['app']
 
 [[vm]]
-  memory = '2gb' # 2GB memory for each instance
-  cpu_kind = 'shared' # Shared CPUs for cost efficiency
-  cpus = 2 # 2 CPUs per instance for better concurrency
-  memory_mb = 2048 # Match memory in MB for clarity
-
+  memory = '2gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024
