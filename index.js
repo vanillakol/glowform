@@ -1186,18 +1186,35 @@ app.get('/live-events', async (req, res) => {
                 <title>Live Events</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
                 <style>
-                    .status { 
-                        font-weight: bold; 
-                        padding: 5px 10px; 
-                        border-radius: 5px; 
-                        margin-left: 10px;
-                    }
-                    .status.Soon { background: #ffd700; color: black; }
-                    .status.Live { background: #ff4444; color: white; }
-                    .status.Finished { background: #808080; color: white; }
-                    .status.Unknown { background: #e0e0e0; color: black; }
-                    .watch-btn.disabled { opacity: 0.5; cursor: not-allowed; }
-                </style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: #1a1a1a;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    .status.Live { background: red; color: white; }
+    .status.Soon { background: yellow; color: black; }
+    .status.Finished { background: gray; color: white; }
+    .back-btn {
+        background: red;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<a href="/" class="back-btn">← Back</a>
+
             </head>
             <body class="bg-gray-100 min-h-screen p-4">
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
