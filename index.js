@@ -1126,58 +1126,52 @@ app.get('/live-events', async (req, res) => {
         }
 
         // Extract events with detailed logging
-       const events = await page.evaluate(() => {
-    console.log('Starting event extraction');
-    const events = [];
-    
-    const eventElements = document.querySelectorAll('.event-name, .evento-name, .event');
-    console.log(`Found ${eventElements.length} events`);
-
-    eventElements.forEach((element, index) => {
-        try {
-            const title = element.textContent?.trim() || 'Untitled Event';
-
-            // **Filter out unwanted events**
-            if (title.toLowerCase().includes('pronto') || title.toLowerCase().includes('finalizado')) {
-                console.log(`Skipping event ${index + 1}: ${title}`);
-                return; // Skip this event
-            }
-
-            const iframeInput = element.parentElement?.querySelector('.iframe-link, .stream-link, input[type="text"]');
-            let link = '#';
+        const events = await page.evaluate(() => {
+            console.log('Starting event extraction');
+            const events = [];
             
-            if (iframeInput?.value) {
-                link = iframeInput.value.trim();
-            }
+            // Try multiple possible selectors
+            const eventElements = document.querySelectorAll('.event-name, .evento-name, .event');
+            console.log(Found ${eventElements.length} events);
 
-            const statusElement = element.parentElement?.querySelector('.status-button, .status');
-            let status = 'Unknown';
-            
-            if (statusElement) {
-                const classList = statusElement.classList;
-                if (classList.contains('status-next') || classList.contains('soon')) status = 'Soon';
-                else if (classList.contains('status-live') || classList.contains('live')) status = 'Live';
-                else if (classList.contains('status-finished') || classList.contains('finished')) status = 'Finished';
-            }
+            eventElements.forEach((element, index) => {
+                try {
+                    const title = element.textContent?.trim() || 'Untitled Event';
+                    const iframeInput = element.parentElement?.querySelector('.iframe-link, .stream-link, input[type="text"]');
+                    let link = '#';
+                    
+                    if (iframeInput?.value) {
+                        link = iframeInput.value.trim();
+                    }
 
-            events.push({ title, link, status });
-            console.log(`Processed event ${index + 1}: ${title}`);
-        } catch (error) {
-            console.error(`Error processing event ${index + 1}:`, error);
-        }
-    });
+                    const statusElement = element.parentElement?.querySelector('.status-button, .status');
+                    let status = 'Unknown';
+                    
+                    if (statusElement) {
+                        const classList = statusElement.classList;
+                        if (classList.contains('status-next') || classList.contains('soon')) status = 'Soon';
+                        else if (classList.contains('status-live') || classList.contains('live')) status = 'Live';
+                        else if (classList.contains('status-finished') || classList.contains('finished')) status = 'Finished';
+                    }
 
-    return events;
-});
+                    events.push({ title, link, status });
+                    console.log(Processed event ${index + 1}: ${title});
+                } catch (error) {
+                    console.error(Error processing event ${index + 1}:, error);
+                }
+            });
 
-        console.log(`Extracted ${events.length} events`);
+            return events;
+        });
+
+        console.log(Extracted ${events.length} events);
 
         if (!events || events.length === 0) {
             throw new Error('No events data available');
         }
 
         // Send the response with the events data
-        const html = `
+        const html = 
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -1186,41 +1180,24 @@ app.get('/live-events', async (req, res) => {
                 <title>Live Events</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
                 <style>
-    body {
-        background-color: black;
-        color: white;
-        font-family: Arial, sans-serif;
-    }
-    .container {
-        max-width: 800px;
-        margin: auto;
-        padding: 20px;
-        background: #1a1a1a;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    }
-    .status.Live { background: red; color: white; }
-    .status.Soon { background: yellow; color: black; }
-    .status.Finished { background: gray; color: white; }
-    .back-btn {
-        background: red;
-        padding: 10px;
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-</style>
-
-<a href="/" class="back-btn">← Back</a>
-
+                    .status { 
+                        font-weight: bold; 
+                        padding: 5px 10px; 
+                        border-radius: 5px; 
+                        margin-left: 10px;
+                    }
+                    .status.Soon { background: #ffd700; color: black; }
+                    .status.Live { background: #ff4444; color: white; }
+                    .status.Finished { background: #808080; color: white; }
+                    .status.Unknown { background: #e0e0e0; color: black; }
+                    .watch-btn.disabled { opacity: 0.5; cursor: not-allowed; }
+                </style>
             </head>
             <body class="bg-gray-100 min-h-screen p-4">
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
                     <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Live Events</h1>
                     <div class="space-y-4">
-                        ${events.map(event => `
+                        ${events.map(event => 
                             <div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                                 <div class="flex items-center">
                                     <span class="font-medium text-gray-800">${event.title}</span>
@@ -1229,11 +1206,11 @@ app.get('/live-events', async (req, res) => {
                                 <a class="watch-btn ${event.link === '#' ? 'disabled' : ''} 
                                     bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors
                                     ${event.link === '#' ? 'pointer-events-none' : ''}"
-                                   ${event.link !== '#' ? `href="/stream/${encodeURIComponent(event.link)}?title=${encodeURIComponent(event.title)}"` : ''}>
+                                   ${event.link !== '#' ? href="/stream/${encodeURIComponent(event.link)}?title=${encodeURIComponent(event.title)}" : ''}>
                                     Watch Now
                                 </a>
                             </div>
-                        `).join('')}
+                        ).join('')}
                     </div>
                     <div class="text-center mt-6">
                         <button onclick="window.location.reload()" 
@@ -1244,14 +1221,14 @@ app.get('/live-events', async (req, res) => {
                 </div>
             </body>
             </html>
-        `;
+        ;
 
         res.send(html);
 
     } catch (error) {
         console.error('Live Events Error:', error);
         
-        res.status(500).send(`
+        res.status(500).send(
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -1282,7 +1259,7 @@ app.get('/live-events', async (req, res) => {
                 </div>
             </body>
             </html>
-        `);
+        );
     } finally {
         if (browser) {
             try {
