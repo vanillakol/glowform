@@ -1126,43 +1126,49 @@ app.get('/live-events', async (req, res) => {
         }
 
         // Extract events with detailed logging
-        const events = await page.evaluate(() => {
-            console.log('Starting event extraction');
-            const events = [];
+       const events = await page.evaluate(() => {
+    console.log('Starting event extraction');
+    const events = [];
+    
+    const eventElements = document.querySelectorAll('.event-name, .evento-name, .event');
+    console.log(`Found ${eventElements.length} events`);
+
+    eventElements.forEach((element, index) => {
+        try {
+            const title = element.textContent?.trim() || 'Untitled Event';
+
+            // **Filter out unwanted events**
+            if (title.toLowerCase().includes('pronto') || title.toLowerCase().includes('finalizado')) {
+                console.log(`Skipping event ${index + 1}: ${title}`);
+                return; // Skip this event
+            }
+
+            const iframeInput = element.parentElement?.querySelector('.iframe-link, .stream-link, input[type="text"]');
+            let link = '#';
             
-            // Try multiple possible selectors
-            const eventElements = document.querySelectorAll('.event-name, .evento-name, .event');
-            console.log(`Found ${eventElements.length} events`);
+            if (iframeInput?.value) {
+                link = iframeInput.value.trim();
+            }
 
-            eventElements.forEach((element, index) => {
-                try {
-                    const title = element.textContent?.trim() || 'Untitled Event';
-                    const iframeInput = element.parentElement?.querySelector('.iframe-link, .stream-link, input[type="text"]');
-                    let link = '#';
-                    
-                    if (iframeInput?.value) {
-                        link = iframeInput.value.trim();
-                    }
+            const statusElement = element.parentElement?.querySelector('.status-button, .status');
+            let status = 'Unknown';
+            
+            if (statusElement) {
+                const classList = statusElement.classList;
+                if (classList.contains('status-next') || classList.contains('soon')) status = 'Soon';
+                else if (classList.contains('status-live') || classList.contains('live')) status = 'Live';
+                else if (classList.contains('status-finished') || classList.contains('finished')) status = 'Finished';
+            }
 
-                    const statusElement = element.parentElement?.querySelector('.status-button, .status');
-                    let status = 'Unknown';
-                    
-                    if (statusElement) {
-                        const classList = statusElement.classList;
-                        if (classList.contains('status-next') || classList.contains('soon')) status = 'Soon';
-                        else if (classList.contains('status-live') || classList.contains('live')) status = 'Live';
-                        else if (classList.contains('status-finished') || classList.contains('finished')) status = 'Finished';
-                    }
+            events.push({ title, link, status });
+            console.log(`Processed event ${index + 1}: ${title}`);
+        } catch (error) {
+            console.error(`Error processing event ${index + 1}:`, error);
+        }
+    });
 
-                    events.push({ title, link, status });
-                    console.log(`Processed event ${index + 1}: ${title}`);
-                } catch (error) {
-                    console.error(`Error processing event ${index + 1}:`, error);
-                }
-            });
-
-            return events;
-        });
+    return events;
+});
 
         console.log(`Extracted ${events.length} events`);
 
